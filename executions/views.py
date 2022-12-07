@@ -4,12 +4,13 @@ from rest_framework import status
 from rest_framework.exceptions import NotFound, PermissionDenied 
 
 from .models import Execution
-
 from .serializers.common import ExecutionSerializer
+
+from rest_framework.permissions import IsAuthenticated
 
 # Endpoint: executions/
 class ExecutionListView(APIView):
-
+  permission_classes = (IsAuthenticated, )
   # GET ALL Executions controller
   # Description: Return all executions related to the trade
   def get(self, _request):
@@ -20,6 +21,7 @@ class ExecutionListView(APIView):
   # POST Execution controller
   # Description: Adds execution to the specified trade
   def post(self, request):
+    
     print("REQUEST USER ->", request.user)
     request.data['owner'] = request.user.id
     print("REQUEST DATA ->", request.data)
@@ -38,7 +40,8 @@ class ExecutionListView(APIView):
 
 # Endpoint: executions/:pk
 class ExecutionDetailView(APIView):
-
+  permission_classes = (IsAuthenticated, )
+  
   def get_execution(self, pk):
     try:
         # Using the get() method we're searching for a record in the books table that has a primary key matching the primary key in the captured value of the request
