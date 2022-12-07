@@ -6,6 +6,8 @@ from rest_framework.exceptions import NotFound, ValidationError
 # import model and serializers
 from .models import Trade
 from .serializers.common import TradeSerializer
+from .serializers.populated import PopulatedExecutionsSerializer
+
 
 # Authentication
 from rest_framework.permissions import IsAuthenticated
@@ -52,7 +54,7 @@ class TradeDetailView(APIView):
   # Description: queries a single trade from the user
   def get(self, _request, pk):
     trade = self.get_trade(pk)
-    serialized_trade = TradeSerializer(trade)
+    serialized_trade = PopulatedExecutionsSerializer(trade)
     return Response(serialized_trade.data)
   
   # POST add Trade controller

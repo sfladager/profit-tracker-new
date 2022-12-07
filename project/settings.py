@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'jwt_auth',
-    'trades'
+    'trades',
+    'executions'
 ]
 
 MIDDLEWARE = [
