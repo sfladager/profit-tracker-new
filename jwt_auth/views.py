@@ -7,6 +7,9 @@ from django.contrib.auth import get_user_model
 from .serializers.common import UserSerializer
 from .serializers.populated import PopulatedUserSerializer
 
+#Authentication
+from rest_framework.permissions import IsAuthenticated
+
 # modules
 from datetime import datetime, timedelta
 import jwt
@@ -61,10 +64,24 @@ class LoginView(APIView):
     }, status.HTTP_202_ACCEPTED)
 
 class ProfileView(APIView):
-  
+  permission_classes = (IsAuthenticated, )
+  # GET all trade data that the user owns
   def get(self, _request, pk):
     print("REQUEST USER ->", pk)
     profile_to_get = User.objects.get(pk=pk)
     serialized_profile = PopulatedUserSerializer(profile_to_get)
     print("REQUEST REQUEST ->", serialized_profile.data)
     return Response(serialized_profile.data)
+
+  #edit user profile
+  def put(self, request, pk):
+
+    user = User.objects.get(pk=pk)
+
+    if user != request.user:
+      raise PermissionDenied('Unauthorized')
+    user_to_update = UserSerializer(user, request.data, partial=True)
+    if user_to_update.is_valid():
+      user_to_update.save()
+      return Response(user_to_update.data, status.HTTP_202_ACCEPTED)
+    return Response('EDIT PROFILE ENDPOINT')
