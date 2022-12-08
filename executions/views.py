@@ -68,11 +68,11 @@ class ExecutionDetailView(APIView):
   def put(self, request, pk):
     try:
       execution = self.get_execution(pk)
-      print('REQUEST USER', request.user)
-      print('EXECUTION OWNER', execution.owner)
+      # print('REQUEST USER', request.user)
+      # print('EXECUTION OWNER', execution.owner)
       owner = request.data['owner']
       if execution.owner != request.user:
-        raise PermissionDenied('Unauthorised')
+        raise PermissionDenied('Unauthorized')
       execution_to_update = ExecutionSerializer(execution, request.data, partial=True)
       if execution_to_update.is_valid():
         execution_to_update.save()
