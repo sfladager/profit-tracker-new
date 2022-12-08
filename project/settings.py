@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'jwt_auth',
     'trades',
-    'executions'
+    'executions',
+    'daily_sessions'
 ]
 
 MIDDLEWARE = [

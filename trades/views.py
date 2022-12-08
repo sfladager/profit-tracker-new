@@ -55,7 +55,9 @@ class TradeDetailView(APIView):
   def get(self, _request, pk):
     trade = self.get_trade(pk)
     serialized_trade = PopulatedExecutionsSerializer(trade)
-    return Response(serialized_trade.data)
+    trade_with_stats = serialized_trade.set_trade_stats()
+    print(trade_with_stats)
+    return Response(trade_with_stats)
   
   # POST add Trade controller
   # Description: adds a trade to the user trades

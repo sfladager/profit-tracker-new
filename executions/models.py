@@ -11,6 +11,7 @@ class Execution(models.Model):
   time = models.TimeField()
   quantity = models.PositiveIntegerField()
   price = models.FloatField()
+  commissions = models.FloatField(default=0)
   trade = models.ForeignKey(
     'trades.Trade',
     related_name='executions',

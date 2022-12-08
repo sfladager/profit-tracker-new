@@ -5,6 +5,7 @@ from rest_framework.exceptions import PermissionDenied
 from django.contrib.auth import get_user_model
 
 from .serializers.common import UserSerializer
+from .serializers.populated import PopulatedUserSerializer
 
 # modules
 from datetime import datetime, timedelta
@@ -58,3 +59,12 @@ class LoginView(APIView):
       'token': token,
       'message': f'Welcome back, {user_to_login.username}'
     }, status.HTTP_202_ACCEPTED)
+
+class ProfileView(APIView):
+  
+  def get(self, _request, pk):
+    print("REQUEST USER ->", pk)
+    profile_to_get = User.objects.get(pk=pk)
+    serialized_profile = PopulatedUserSerializer(profile_to_get)
+    print("REQUEST REQUEST ->", serialized_profile.data)
+    return Response(serialized_profile.data)

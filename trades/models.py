@@ -30,6 +30,11 @@ class Trade(models.Model):
   setup = models.CharField(max_length=100)
   mistakes = models.CharField(max_length=200)
   notes = models.TextField()
+  owner_of_trade = models.ForeignKey(
+    'jwt_auth.User',
+    related_name='trades',
+    on_delete=models.PROTECT
+  )
   
   def __str__(self):
     return f"{self.date_opened} | {self.asset_class} | {self.symbol}"

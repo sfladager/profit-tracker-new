@@ -20,5 +20,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('jwt_auth.urls')),
     path('trades/', include('trades.urls')),
-    path('executions/', include('executions.urls'))
+    path('executions/', include('executions.urls')),
+    path('sessions/', include('daily_sessions.urls')),
 ]
