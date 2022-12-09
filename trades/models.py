@@ -33,6 +33,9 @@ class Trade(models.Model):
   owner_of_trade = models.ForeignKey(
     'jwt_auth.User',
     related_name='trades',
+    blank=True,
+    default=None,
+    null=True,
     on_delete=models.PROTECT
   )
   

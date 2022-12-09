@@ -1,0 +1,136 @@
+* {
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  margin: 0;
+}
+
+// Variables
+$primary: #131722;
+$blue: #2962ff;
+$green: #00C800;
+
+
+// COMMON
+.site-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+
+.icons {
+  color: $blue;
+}
+
+// Common button styles
+.button-blue {
+  background: $blue;
+  color: #fff;
+  border: none;
+  &:hover {
+    background-color: darken($blue, 5%);
+  }
+};
+.button-light {
+  background: #a1a1a1;
+  color: #000;
+  border: none;
+  &:hover {
+    background-color: darken(#a1a1a1, 5%);
+  }
+}
+
+// Navbar
+.navbar {
+  background: $primary;
+  color: #fff;
+  #nav-dropdown {
+    color: #fff;
+  }
+  .navbar-toggler-icon {
+    color: #fff;
+  }
+  .nav-links-container {
+    display: flex;
+    width: 100%;
+    // justify-content: flex-start;
+    // align-items: flex-start;
+  }
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+  }
+  .nav-auth-buttons {
+    margin-left: 5px;
+  }
+}
+
+
+
+// Login & Register page
+.auth-form-row {
+  display: flex;
+  justify-content: center;
+}
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  height: calc(100vh - 140px);
+  max-width: 400px;
+  .auth-form-title {
+    margin-bottom: 25px;
+  }
+  label {
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+    padding-left: 1px;
+  }
+  input {
+    margin-bottom: 20px;
+    border: none;
+    border-bottom: 1px solid $primary;
+  }
+  small {
+    display: block;
+    margin-bottom: 15px;
+  }
+}
+.auth-footer {
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .sign-in {
+    margin-left: 7px;
+    color: $blue;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+
+  // Navbar
+.navbar {
+  background: $primary;
+  color: #fff;
+  #nav-dropdown {
+    color: #fff;
+  }
+  .navbar-toggler-icon {
+    color: #fff;
+  }
+  .nav-links-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .nav-links, .nav-buttons {
+    display: flex;
+    flex-direction: row;
+  }
+  .nav-auth-buttons {
+    margin-left: 5px;
+  }
+}
+}
