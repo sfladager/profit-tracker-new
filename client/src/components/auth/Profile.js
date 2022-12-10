@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate, Link, useParams } from 'react-router-dom'
 
 // Imports
 import axios from 'axios'
@@ -13,19 +13,36 @@ import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 
 const Profile = () => {
+
+  // ! State
+  // profileData is variable used to store save profile data to populate form
   const [profileData, setProfileData] = useState(null)
+  // errors from axios request
   const [errors, setErrors] = useState(false)
 
+  //error to displat data on page
+  const [ error, setError ] = useState('')
+
+  // Form fields to update
+  const [ formFields, setFormFields ] = useState({
+    email: '',
+    username: '',
+    first_name: '',
+    last_name: '',
+    profile_image: '',
+    password: '',
+  })
+
+  // Get user data from database
   useEffect(() => {
     const getProfile = async () => {
       try {
-        const { data } = await axios.get('/api/profile', {
+        const { data } = await axios.get('/api/auth/profile/', {
           headers: {
             Authorization: `Bearer ${getToken()}`,
           },
         })
-        console.log(data)
-        setProfileData(data)
+        setFormFields(data)
       } catch (err) {
         console.log(err)
         setErrors(true)
@@ -34,85 +51,112 @@ const Profile = () => {
     getProfile()
   }, [])
 
+  // ! Executions
+  // updates state when a form field is updated
+  const handleChange = (e) => {
+    console.log(formFields)
+    setFormFields({ ...formFields, [e.target.name]: e.target.value })
+  }
+
+  // submits data to update user infor
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    try {
+      const { data } = await axios.put('/api/auth/profile/', formFields, {
+        headers: {
+          Authorization: `Bearer ${getToken()}`,
+        },
+      })
+      console.log(data)
+      setFormFields(data)
+      //navigate('/dashboard')
+    } catch (err) {
+      setError(err.response.data.message)
+    }
+  }
 
   return (
-    <main className="profile-page-wrapper">
-      <h1>My profile</h1>
-      {profileData ?
-        <>
-          <div className='profile-link-flex'>
-            <h2 className='profile-title'>My details</h2>
-            <Link to="/edit-profile" className='btn-edit'>Edit details</Link>
-          </div>
-          <p className='profile-details'>username: <span id='span-username'>{profileData.username}</span></p>
-          <p className='profile-details'>e-mail: <span id='span-email'>{profileData.email}</span></p>
-          <hr></hr>
-          <div className='profile-link-flex'>
-            <h2 className='profile-title'>My plants</h2>
-            {profileData.createdPlants.length < 1 &&
-              <Link to="/plants/new" className='btn-post'>Post a first plant!</Link>
-            }
-            {profileData.createdPlants.length > 0 &&
-              <Link to="/plants/new" className='btn-post'>Post a new plant!</Link>
-            }
-          </div>
-          {profileData.createdPlants.length < 1 &&
-            <p className='profile-details'>You have not posted any plants yet.</p>
-          }
-          <div className='profile-row'>
-            {profileData.createdPlants.length > 0 &&
-              profileData.createdPlants.map(plant => {
-                return (
-                  <div key={plant._id} className='profile-card'>
-                    <Link to={`/plants/${plant._id}`}>
-                      <div className="buffer">
-                        <div className="profile-card-image" style={{ backgroundImage: `url(${plant.thumbnail})` }}></div>
-                        <h2 className='profile-card-title'>{plant.name}</h2>
-                      </div>
-                    </Link>
+    <main className="auth-page">
+      <Container className="mt-4">
+        {formFields ?
+          <>
+            <Row className="auth-form-row">
+              <Col lg={4}></Col>
+              <Col className="auth-form" sm={10} lg={4}>
+                <form className="auth-form" onSubmit={handleSubmit}>
+                  <h1 className="auth-form-title">{formFields.username}</h1>
+                  {/* Profile Image */}
+                  <div className="profile-image">
+                    <img src={formFields.profile_image} alt="User profile image" />
                   </div>
-                )
-              }
-              )
-            }
-          </div>
-          <hr></hr>
-          <div className='profile-link-flex'>
-            <h2 className='profile-title'>My blogs</h2>
-            {profileData.createdBlogs.length < 1 &&
-              <Link to="/blogs/new" className='btn-post special-margin'>Post a first blog!</Link>
-            }
-            {profileData.createdBlogs.length > 0 &&
-              <Link to="/blogs/new" className='btn-post special-margin'>Post a new blog!</Link>
-            }
-          </div>
-          {profileData.createdBlogs.length < 1 &&
-            <p className='profile-details'>You have not posted any blogs yet.</p>
-          }
-
-          <div className='profile-row'>
-            {profileData.createdBlogs.length > 0 &&
-              profileData.createdBlogs.map(blog => {
-                return (
-                  <div key={blog._id} className='profile-card'>
-                    <Link to={`/blogs/${blog._id}`}>
-                      <div className="buffer">
-                        <p className='profile-card-title'>{blog.title}</p>
-                        <div className="profile-card-image" style={{ backgroundImage: `url(${blog.thumbnail})` }}></div>
-                      </div>
-                    </Link>
-                  </div>
-                )
-              }
-              )
-            }
-          </div>
-        </>
-        :
-        errors ? <h2>Something went wrong! Please try again later!</h2> : <h2>Loading</h2>
-      }
+                  {/* Email */}
+                  <label htmlFor="email">Email</label>
+                  <input 
+                    type="email" 
+                    name="email" 
+                    onChange={handleChange} 
+                    value={formFields.email} 
+                    placeholder="Email Address"
+                    required
+                  />
+                  {/* Username */}
+                  <label htmlFor="username">Username</label>
+                  <input
+                    type="text"
+                    name="username"
+                    onChange={handleChange}
+                    value={formFields.username}
+                    placeholder="Username"
+                  />
+                  {/* First name */}
+                  <label htmlFor="first_name">First name</label>
+                  <input
+                    type="text"
+                    name="first_name"
+                    onChange={handleChange}
+                    value={formFields.first_name}
+                    placeholder="First name"
+                  />
+                  {/* Last name */}
+                  <label htmlFor="last_name">Last name</label>
+                  <input
+                    type="text"
+                    name="last_name"
+                    onChange={handleChange}
+                    value={formFields.last_name}
+                    placeholder="Last name"
+                  />
+                  {/* Password */}
+                  <label htmlFor="password">Password</label>
+                  <input 
+                    type="password" 
+                    name="password" 
+                    onChange={handleChange} 
+                    value={formFields.password} 
+                    placeholder="Password" 
+                    required
+                  />
+                  {/* Error Message */}
+                  {error && <small className='text-danger'>{error}</small>}
+                  {/* Submit */}
+                  <Button type="submit" className='button-blue'>Save</Button>
+                </form>
+              </Col>
+              <Col lg={4}></Col>
+            </Row>
+            <footer className="auth-footer">
+              <p>Need to create an account?
+                <Link type="submit" to="/register"><span className="sign-in">Sign up</span></Link>
+              </p>
+            </footer>
+          </>
+          :
+          <>
+            errors ? <h2>Something went wrong! Please try again later!</h2> : <h2>Loading</h2>
+          </>
+        }
+      </Container>
     </main >
-
   )
 }
 

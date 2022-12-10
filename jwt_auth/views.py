@@ -67,12 +67,15 @@ class LoginView(APIView):
 class ProfileView(APIView):
   permission_classes = (IsAuthenticated, )
   # GET all trade data that the user owns
-  def get(self, _request, pk):
-    print("REQUEST USER ->", pk)
-    profile_to_get = User.objects.get(pk=pk)
+  def get(self, request):
+    print("REQUEST USER ->", request.user)
+    profile_to_get = User.objects.get(pk=request.user.id)
+    
     serialized_profile = PopulatedUserSerializer(profile_to_get)
-    print("REQUEST REQUEST ->", serialized_profile.data)
-    return Response(serialized_profile.data)
+    print('USERS ->',serialized_profile.data )
+    return Response(serialized_profile.data) 
+    #print("REQUEST REQUEST ->", serialized_profile.data)
+    #return Response(serialized_profile.data)
 
   #edit user profile
   def put(self, request, pk):

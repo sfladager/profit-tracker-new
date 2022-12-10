@@ -9,7 +9,7 @@ import jwt
 
 class JWTAuthentication(BaseAuthentication):
   def authenticate(self, request):
-    print('REQEST HEADERS ->', request.headers)
+    #print('REQEST HEADERS ->', request.headers)
 
     # 1. Check if headers exist
     if not request.headers:
@@ -30,6 +30,7 @@ class JWTAuthentication(BaseAuthentication):
       payload = jwt.decode(token, settings.SECRET_KEY, algorithms=['HS256'])
       # 6. Use the sub portion of the token to query the User table to find a match
       user = User.objects.get(pk=payload['sub'])
+      print('USER ->', user.id)
     except User.DoesNotExist:
       raise PermissionDenied('User Not Found')
     except Exception as e:
