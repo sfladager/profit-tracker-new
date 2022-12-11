@@ -22,9 +22,9 @@ class ExecutionListView(APIView):
   # Description: Adds execution to the specified trade
   def post(self, request):
     
-    print("REQUEST USER ->", request.user)
-    request.data['owner'] = request.user.id
-    print("REQUEST DATA ->", request.data)
+    print("REQUEST USER ->", request.user.id)
+    # request.data['owner'] = request.user.id
+    # print("REQUEST DATA ->", request.data)
     execution_to_add = ExecutionSerializer(data=request.data)
     try:
       if execution_to_add.is_valid():

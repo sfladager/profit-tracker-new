@@ -10,6 +10,9 @@ import Register from './components/auth/Register'
 import Profile from './components/auth/Profile'
 import Dashboard from './components/pages/Dashboard'
 import Trades from './components/pages/trades/Trades'
+import TradeNew from './components/pages/trades/TradeNew'
+import TradeSingle from './components/pages/trades/TradeSingle'
+import ExecutionNew from './components/pages/trades/ExecutionNew'
 
 const App = () => {
 
@@ -25,6 +28,9 @@ const App = () => {
           <Route path="/profile" element={<Profile />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/trades" element={<Trades />} />
+          <Route path="/trades/trade/add" element={<TradeNew />} />
+          <Route path="/trades/:TradeId" element={<TradeSingle />} />
+          <Route path="/trades/:TradeId/execution/add" element={<ExecutionNew />} />
 
         </Routes>
       </BrowserRouter>

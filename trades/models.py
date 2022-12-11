@@ -42,8 +42,6 @@ class Trade(models.Model):
   trade_type = models.CharField(max_length=2, choices=TYPE_OF_TRADE, default=None)
   side = models.CharField(max_length=5, choices=POSITION_TYPE, default=None)
   symbol = models.CharField(max_length=15)
-  # timeframe_day = models.PositiveIntegerField(blank=True, default=None, null=True)  
-  # timeframe_min = models.PositiveIntegerField(blank=True, default=None, null=True)
   timeframe = models.CharField(max_length=10, choices=TIMEFRAME_OPTIONS, default=None)
   target = models.FloatField(blank=True, default=None, null=True)
   stoploss = models.FloatField(blank=True, default=None, null=True)

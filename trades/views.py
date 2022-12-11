@@ -1,12 +1,17 @@
-from rest_framework.views import APIView 
+from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.exceptions import NotFound, ValidationError
+
 
 # import model and serializers
 from .models import Trade
 from .serializers.common import TradeSerializer
 from .serializers.populated import PopulatedExecutionsSerializer
+from .forms.form import TradeForm
+from .serializers.form_serializer import TradeFormSerializer
+
+from rest_framework.renderers import TemplateHTMLRenderer
 
 
 # Authentication
@@ -79,3 +84,16 @@ class TradeDetailView(APIView):
     trade_to_delete = self.get_trade(pk)
     trade_to_delete.delete()
     return Response(status=status.HTTP_204_NO_CONTENT)
+  
+# Endpoint: /trades/form
+class TradeFormView(APIView):
+  permission_classes = (IsAuthenticated, )
+  renderer_classes = [TemplateHTMLRenderer]
+  template_name = 'rest_framework/vertical/form.html'
+
+  def get(self, _request):
+    form = TradeForm()
+    print(form.fields)
+    serialized_form = TradeFormSerializer(form.fields)
+    print(serialized_form.data)
+    return Response(form.fields)

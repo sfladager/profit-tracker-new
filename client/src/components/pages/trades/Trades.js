@@ -21,7 +21,7 @@ const Trades = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const { data } = await axios.get('/api/trades', {
+        const { data } = await axios.get('/api/trades/', {
           headers: {
             Authorization: `Bearer ${getToken()}`,
           },
@@ -39,7 +39,7 @@ const Trades = () => {
 
 
   return (
-    <div className="home-page">
+    <div className="trades-list-page">
       <Container className="trades-metrics-container mt-1"></Container>
       <Container className="trades-filter-container mt-2"></Container>
       <Container className="trades-title-container mt-1">
@@ -60,7 +60,7 @@ const Trades = () => {
             return (
               <Row key={id}>
                 <Col>status</Col>
-                <Col>Date Open</Col>
+                <Col>{trade.date_opened}</Col>
                 <Col>{symbol}</Col>
                 <Col>{side}</Col>
                 <Col>Return $</Col>
