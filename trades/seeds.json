@@ -1,0 +1,44 @@
+[
+{
+  "model": "trades.trade",
+  "pk": 1,
+  "fields": {
+    "date_opened": "2022-12-01",
+    "date_closed": "2022-12-07",
+    "asset_class": "stocks",
+    "trade_type": "DT",
+    "side": "long",
+    "symbol": "FB",
+    "timeframe": "15",
+    "target": 135.34,
+    "stoploss": 133.34,
+    "expected_r": 2.0,
+    "avg_buy_price": null,
+    "setup": "B/O Bounce off prev support",
+    "mistakes": "None",
+    "notes": "Trade went well!",
+    "owner_of_trade": 2
+  }
+},
+{
+  "model": "trades.trade",
+  "pk": 3,
+  "fields": {
+    "date_opened": "2022-12-07",
+    "date_closed": "2022-12-07",
+    "asset_class": "stocks",
+    "trade_type": "DT",
+    "side": "long",
+    "symbol": "LVS",
+    "timeframe": "5",
+    "target": 46.74,
+    "stoploss": 46.0,
+    "expected_r": 2.0,
+    "avg_buy_price": null,
+    "setup": "TTG",
+    "mistakes": "None",
+    "notes": "Trade went well!",
+    "owner_of_trade": 2
+  }
+}
+]

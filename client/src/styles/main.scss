@@ -65,6 +65,38 @@ $green: #00C800;
   }
 }
 
+// Dashboard
+.account-info-container {
+  .title-box {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+// Dropzone image
+.dropzone-content {
+  font-size: 0.8rem;
+  padding-left: 5px;
+  height: 100px;
+  border: 1px dotted rgba(10, 10, 10, 0.2);
+  display: flex;
+  align-items: center;
+}
+.profile-image-input {
+  display: flex;
+  flex-basis: 100%;
+  margin-bottom: 5px;
+}
+
+.thumbsContainer {
+  padding: 0;
+  border: 1px dotted rgba(10, 10, 10, 0.2);
+  max-height: 100px;
+  .thumb-img {
+    max-width: 100px;
+  }
+}
+
 
 
 // Login & Register page
@@ -106,6 +138,9 @@ $green: #00C800;
     color: $blue;
   }
 }
+
+
+
 
 @media only screen and (min-width: 768px) {
 

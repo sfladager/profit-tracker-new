@@ -72,20 +72,19 @@ class ProfileView(APIView):
     profile_to_get = User.objects.get(pk=request.user.id)
     
     serialized_profile = PopulatedUserSerializer(profile_to_get)
-    print('USERS ->',serialized_profile.data )
-    return Response(serialized_profile.data) 
-    #print("REQUEST REQUEST ->", serialized_profile.data)
-    #return Response(serialized_profile.data)
+
+    print('CALCS ->', serialized_profile)
+    return Response(serialized_profile.data)
 
   #edit user profile
-  def put(self, request, pk):
+  def put(self, request):
 
-    user = User.objects.get(pk=pk)
-
+    user = User.objects.get(pk=request.user.id)
+    print('EDIT USER DATA', user)
     if user != request.user:
       raise PermissionDenied('Unauthorized')
     user_to_update = UserSerializer(user, request.data, partial=True)
     if user_to_update.is_valid():
       user_to_update.save()
       return Response(user_to_update.data, status.HTTP_202_ACCEPTED)
-    return Response('EDIT PROFILE ENDPOINT')
+    return Response(user_to_update.errors, status.HTTP_500_INTERNAL_SERVER_ERROR)

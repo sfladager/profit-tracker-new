@@ -5,6 +5,7 @@ import { useNavigate, Link, useParams } from 'react-router-dom'
 import axios from 'axios'
 
 import { getToken } from '../../helpers/auth'
+import ImageUpload from '../../helpers/ImageUpload'
 
 // Bootstrap Components
 import Container from 'react-bootstrap/Container'
@@ -14,9 +15,9 @@ import Button from 'react-bootstrap/Button'
 
 const Profile = () => {
 
+  const navigate = useNavigate()
+
   // ! State
-  // profileData is variable used to store save profile data to populate form
-  const [profileData, setProfileData] = useState(null)
   // errors from axios request
   const [errors, setErrors] = useState(false)
 
@@ -31,6 +32,7 @@ const Profile = () => {
     last_name: '',
     profile_image: '',
     password: '',
+    password_confirmation: '',
   })
 
   // Get user data from database
@@ -67,9 +69,9 @@ const Profile = () => {
           Authorization: `Bearer ${getToken()}`,
         },
       })
-      console.log(data)
+      console.log('DATA AFTER PUT ->', data)
       setFormFields(data)
-      //navigate('/dashboard')
+      navigate('/dashboard')
     } catch (err) {
       setError(err.response.data.message)
     }
@@ -86,9 +88,10 @@ const Profile = () => {
                 <form className="auth-form" onSubmit={handleSubmit}>
                   <h1 className="auth-form-title">{formFields.username}</h1>
                   {/* Profile Image */}
-                  <div className="profile-image">
-                    <img src={formFields.profile_image} alt="User profile image" />
-                  </div>
+                  <ImageUpload
+                    formFields={formFields}
+                    setFormFields={setFormFields}
+                  />
                   {/* Email */}
                   <label htmlFor="email">Email</label>
                   <input 
@@ -132,8 +135,18 @@ const Profile = () => {
                     type="password" 
                     name="password" 
                     onChange={handleChange} 
-                    value={formFields.password} 
+                    value={formFields.password}
                     placeholder="Password" 
+                    required
+                  />
+                  {/* Password */}
+                  <label htmlFor="password_confirmation">Password confirmation</label>
+                  <input 
+                    type="password_confirmation" 
+                    name="password_confirmation" 
+                    onChange={handleChange} 
+                    value={formFields.password_confirmation}
+                    placeholder="Password confirmation" 
                     required
                   />
                   {/* Error Message */}
@@ -144,11 +157,11 @@ const Profile = () => {
               </Col>
               <Col lg={4}></Col>
             </Row>
-            <footer className="auth-footer">
+            {/* <footer className="auth-footer">
               <p>Need to create an account?
                 <Link type="submit" to="/register"><span className="sign-in">Sign up</span></Link>
               </p>
-            </footer>
+            </footer> */}
           </>
           :
           <>

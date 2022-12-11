@@ -1,0 +1,72 @@
+[
+{
+  "model": "executions.execution",
+  "pk": 1,
+  "fields": {
+    "action": "buy",
+    "date": "2022-12-01",
+    "time": "20:09:30",
+    "quantity": 50,
+    "price": 133.02,
+    "commissions": 0.0,
+    "trade": 1,
+    "owner": 2
+  }
+},
+{
+  "model": "executions.execution",
+  "pk": 4,
+  "fields": {
+    "action": "sell",
+    "date": "2022-12-07",
+    "time": "16:13:07",
+    "quantity": 50,
+    "price": 135.23,
+    "commissions": 0.0,
+    "trade": 1,
+    "owner": 2
+  }
+},
+{
+  "model": "executions.execution",
+  "pk": 6,
+  "fields": {
+    "action": "buy",
+    "date": "2022-12-02",
+    "time": "14:39:20",
+    "quantity": 500,
+    "price": 46.25,
+    "commissions": 0.0,
+    "trade": 3,
+    "owner": 2
+  }
+},
+{
+  "model": "executions.execution",
+  "pk": 7,
+  "fields": {
+    "action": "sell",
+    "date": "2022-12-08",
+    "time": "08:19:20",
+    "quantity": 250,
+    "price": 46.55,
+    "commissions": 0.0,
+    "trade": 3,
+    "owner": 2
+  }
+},
+{
+  "model": "executions.execution",
+  "pk": 8,
+  "fields": {
+    "action": "sell",
+    "date": "2022-12-08",
+    "time": "08:28:25",
+    "quantity": 250,
+    "price": 46.8,
+    "commissions": 0.0,
+    "trade": 3,
+    "owner": 2
+  }
+}
+]

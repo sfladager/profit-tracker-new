@@ -9,6 +9,7 @@ import Login from './components/auth/Login'
 import Register from './components/auth/Register'
 import Profile from './components/auth/Profile'
 import Dashboard from './components/pages/Dashboard'
+import Trades from './components/pages/trades/Trades'
 
 const App = () => {
 
@@ -23,6 +24,7 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/trades" element={<Trades />} />
 
         </Routes>
       </BrowserRouter>

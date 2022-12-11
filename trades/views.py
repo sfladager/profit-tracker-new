@@ -19,8 +19,8 @@ class TradeListView(APIView):
   # Description: returns all trades found back to user
   def get(self, _request):
     trades = Trade.objects.all()
-    serialized_books = TradeSerializer(trades, many=True)
-    return Response(serialized_books.data)
+    serialized_trades = TradeSerializer(trades, many=True)
+    return Response(serialized_trades.data)
   
   # POST add Trade controller
   # Description: adds a trade to the user trades

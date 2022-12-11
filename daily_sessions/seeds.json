@@ -1,0 +1,35 @@
+[
+{
+  "model": "daily_sessions.session",
+  "pk": 2,
+  "fields": {
+    "session_date": "2022-12-07",
+    "session_rating": 4,
+    "session_notes": "Took profits too early, and stock hit targets as per plan. Market dumped, stock had strong relative strength.",
+    "session_trades": 3,
+    "owner_of_session": 2
+  }
+},
+{
+  "model": "daily_sessions.session",
+  "pk": 4,
+  "fields": {
+    "session_date": "2022-12-08",
+    "session_rating": 3,
+    "session_notes": "testing the add session controller",
+    "session_trades": null,
+    "owner_of_session": 2
+  }
+},
+{
+  "model": "daily_sessions.session",
+  "pk": 5,
+  "fields": {
+    "session_date": "2022-12-04",
+    "session_rating": 5,
+    "session_notes": "This session was perfect",
+    "session_trades": null,
+    "owner_of_session": 2
+  }
+}
+]

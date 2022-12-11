@@ -17,7 +17,6 @@ class PopulatedExecutionsSerializer(TradeSerializer):
     total_commission = []
 
     for execution in data['executions']:
-      # print('EXECUTION', execution['commissions'])
       total_commission.append(execution['commissions'])
       if execution['action'] == 'buy':
         quantity = float(execution['quantity'])
