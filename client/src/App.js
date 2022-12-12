@@ -13,6 +13,9 @@ import Trades from './components/pages/trades/Trades'
 import TradeNew from './components/pages/trades/TradeNew'
 import TradeSingle from './components/pages/trades/TradeSingle'
 import ExecutionNew from './components/pages/trades/ExecutionNew'
+import SessionsAll from './components/pages/sessions/SessionsAll'
+import SessionNew from './components/pages/sessions/SessionNew'
+import SessionSingle from './components/pages/sessions/SessionSingle'
 
 const App = () => {
 
@@ -31,6 +34,10 @@ const App = () => {
           <Route path="/trades/trade/add" element={<TradeNew />} />
           <Route path="/trades/:TradeId" element={<TradeSingle />} />
           <Route path="/trades/:TradeId/execution/add" element={<ExecutionNew />} />
+          <Route path="/sessions" element={<SessionsAll />} />
+          <Route path="/sessions/single/add" element={<SessionNew />} />
+          <Route path="/sessions/:SessionId" element={<SessionSingle />} />
+
 
         </Routes>
       </BrowserRouter>

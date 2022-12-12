@@ -10,6 +10,9 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 
+// Icons
+import { ChevronLeft } from 'react-feather'
+
 
 
 const TradeForm = ({ handleSubmit, formFields, setFormFields, errors, setErrors, formName }) => {
@@ -67,7 +70,7 @@ const TradeForm = ({ handleSubmit, formFields, setFormFields, errors, setErrors,
       <Container className="trade-form-container mt-4">
         <div className="back-btn-container">
           <Link to={'/trades'}>
-            <button className="back-btn">Back</button>
+            <ChevronLeft className="back-btn" />
           </Link>
         </div>
         <h1>{formName}</h1>

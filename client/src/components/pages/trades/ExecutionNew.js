@@ -49,7 +49,7 @@ const ExecutionNew = () => {
         },
       })
       console.log('SUCCESS', data)
-      // navigate(`/blogs/${data._id}`)
+      navigate(`/trades/${TradeId}`)
     } catch (err) {
       console.log(err.response.data)
       setErrors(err.response.data)

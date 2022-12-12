@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import axios from 'axios'
 
 // Bootstrap imports
@@ -12,6 +12,9 @@ import { getToken } from '../../../helpers/auth'
 
 
 const Trades = () => {
+
+  // ! Navigation
+  const { TradeId } = useParams()
 
   // ! State
   const [ trades, setTrades ] = useState([])
@@ -58,15 +61,17 @@ const Trades = () => {
           trades.map(trade => {
             const { id, symbol, side, setup } = trade
             return (
-              <Row key={id}>
-                <Col>status</Col>
-                <Col>{trade.date_opened}</Col>
-                <Col>{symbol}</Col>
-                <Col>{side}</Col>
-                <Col>Return $</Col>
-                <Col>Return %</Col>
-                <Col>{setup}</Col>
-              </Row>
+              <Link key={id} to={`/trades/${id}`}>
+                <Row className="trade-list-row">
+                  <Col>status</Col>
+                  <Col>{trade.date_opened}</Col>
+                  <Col>{symbol}</Col>
+                  <Col>{side}</Col>
+                  <Col>Return $</Col>
+                  <Col>Return %</Col>
+                  <Col>{setup}</Col>
+                </Row>
+              </Link>
             )
           })
           :

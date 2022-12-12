@@ -10,6 +10,9 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 
+// Icons
+import { ChevronLeft } from 'react-feather'
+
 const ExecutionForm = ({ handleSubmit, formFields, setFormFields, errors, setErrors, formName }) => {
 
   // ! Navigation
@@ -64,15 +67,15 @@ const ExecutionForm = ({ handleSubmit, formFields, setFormFields, errors, setErr
 
   return (
     <div className="trade-form-page">
-      <Container className="trade-form-container mt-4">
+      <Container className="mt-4">
         <div className="back-btn-container">
           <Link to={`/trades/${TradeId}`}>
-            <button className="back-btn">Back</button>
+            <ChevronLeft className="back-btn" />
           </Link>
         </div>
-        <h1>{formName}</h1>
-        <form onSubmit={handleSubmit}>
-          <Container>
+        <Container className="trade-form-container">
+          <h1>{formName}</h1> 
+          <form className="trade-form" onSubmit={handleSubmit}>
             {/* Date */}
             <label htmlFor="date">Date</label>
             <input
@@ -129,9 +132,9 @@ const ExecutionForm = ({ handleSubmit, formFields, setFormFields, errors, setErr
               placeholder="ex. 23.48"
               required
             />
-            <button type="submit">{formName}</button>
-          </Container>
-        </form>
+            <Button type="submit" className="button-blue">{formName}</Button>
+          </form>
+        </Container>
       </Container>
     </div>
   )

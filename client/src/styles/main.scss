@@ -12,8 +12,8 @@ $green: #00C800;
 
 // COMMON
 .site-wrapper {
-  display: flex;
-  flex-direction: column;
+  // display: flex;
+  // flex-direction: column;
   min-height: 100vh;
 }
 
@@ -37,6 +37,28 @@ $green: #00C800;
   border: none;
   &:hover {
     background-color: darken(#a1a1a1, 5%);
+  }
+}
+
+.edit-btn {
+  background: #f6f208;
+  color: #000;
+  border: none;
+  &:hover {
+    background-color: darken(#f6f208, 10%);
+  }
+}
+
+.back-btn {
+  background: #fff;
+  border: none;
+  color: #000;
+  margin-bottom: 5px;
+  &:hover {
+    color: $blue;
+    transition: width 0.5s, height 0.5s;
+    height: 26px;
+    width: 26px;
   }
 }
 
@@ -109,7 +131,7 @@ $green: #00C800;
   flex-direction: column;
   padding: 20px;
   height: calc(100vh - 140px);
-  max-width: 400px;
+  max-width: 600px;
   .auth-form-title {
     margin-bottom: 25px;
   }
@@ -139,6 +161,122 @@ $green: #00C800;
   }
 }
 
+// Trade list page
+.trade-list-row {
+  border-bottom: 1px solid #000;
+  text-decoration: none;
+}
+
+// Trade form and execution form
+.trade-form-container {
+  margin-bottom: 20px;
+  margin-top: 20px;
+  .trade-form {
+    display: flex;
+    flex-direction: column;
+  }
+  label {
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+    padding-left: 1px;
+  }
+  input {
+    margin-bottom: 10px;
+    border: none;
+    border-bottom: 1px solid $primary;
+    padding: 5px;
+
+  }
+  small {
+    display: block;
+    margin-bottom: 15px;
+  }
+  select {
+    padding: 5px;
+    margin-bottom: 5px;
+    border: none;
+    border-bottom: 1px solid $primary;
+  }
+}
+
+
+// Sessions
+// sessions list column
+
+.sessions-page-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  .session-list-view {
+    height: calc(100vh - 80px);
+    border: 1px solid $primary;
+    width: 90%;
+    padding: 0px;
+    margin: 10px auto;
+  }
+  .session-main-view {
+    height: calc(100vh - 80px);
+    margin: 10px 5px 10px 5px;
+    width: 90%;
+    margin: 0 auto;
+  }
+  .session-list-heading {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(10, 10, 10, 0.2);
+    padding-top: 5px;
+  }
+    h1 {
+      font-size: 1.3rem;
+      margin: 2px 0 2px 5px;
+    }
+    .add-session-btn {
+      background-color: $blue;
+      border-radius: 5px;
+      padding: 2px 0;
+      height: 28px;
+      width: 28px;
+      margin: 2px 5px 2px 0;
+      color: #000;
+      &:hover {
+        background-color: darken($blue, 5%);
+        transition: width 0.5s, height 0.5s;
+        height: 30px;
+        width: 30px;
+      } 
+    }
+    .session-tile {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px;
+      margin: 0;
+      border-bottom: 1px solid rgba(10, 10, 10, 0.2);
+      &:hover {
+        background-color: $blue;
+      }
+    }
+    .rating-p {
+      border: 1px solid rgba(10, 10, 10, 0.2);
+      padding: 10px;
+    }
+    .session-date {
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+  }
+
+  .green {
+    background-color: $green;
+  }
+
+  .yellow {
+    background-color: #e6e610
+  }
+
+  .red {
+    background-color: #f0571f;
+  }
 
 
 
@@ -166,6 +304,29 @@ $green: #00C800;
   }
   .nav-auth-buttons {
     margin-left: 5px;
+  }
+}
+.sessions-page-container {
+  flex-direction: row;
+  justify-content: space-between;
+  .session-list-view {
+    width: 30%;
+    padding: 0px;
+    margin: 10px;
+  }
+  .session-main-view {
+
+    margin: 10px 5px 10px 5px;
+    width: 70%;
+    margin: 10px auto;
+  }
+  .sesion-main-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(10, 10, 10, 0.2);
   }
 }
 }
