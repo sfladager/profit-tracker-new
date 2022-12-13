@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useParams, request } from 'react-router-dom'
 import axios from 'axios'
 import { getToken } from '../../../helpers/auth'
+import parse from 'html-react-parser'
 
 
 // Bootstrap
@@ -104,7 +105,7 @@ const SessionsAll = () => {
             </div>
             <div className="session-main-body">
               <p>Notes:</p>
-              <p>{sessionData.session_notes}</p>
+              <p>{sessionData.session_notes && parse(sessionData.session_notes) }</p>
             </div>
           </>
           :

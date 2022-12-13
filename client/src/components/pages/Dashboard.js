@@ -41,7 +41,10 @@ const Dashboard = () => {
   return (
     <Container className="dashboard-container">
       <Row className="quotes">
-        <h1> Ticker from tradingview goes here</h1>
+        <div className="tradingview-widget-container">
+          <div className="tradingview-widget-container__widget"></div>
+          <div className="tradingview-widget-copyright"> by TradingView</div>
+        </div>
       </Row>
       <Row className="account-info-container mt-4">
         <div className="title-box">

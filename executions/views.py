@@ -5,8 +5,54 @@ from rest_framework.exceptions import NotFound, PermissionDenied
 
 from .models import Execution
 from .serializers.common import ExecutionSerializer
+from trades.models import Trade
+from trades.serializers.populated import PopulatedTradeSerializer
 
 from rest_framework.permissions import IsAuthenticated
+
+def set_trade_stats(executions, trade):
+  serialized_executions = ExecutionSerializer(executions, many=True)
+  data = {}
+
+  avg_buy_list = []
+  avg_sell_list = []
+  total_buy_quantity = []
+  total_sell_quantity = []
+  total_commission = []
+
+  for execution in serialized_executions.data:
+    total_commission.append(execution['commissions'])
+    if execution['action'] == 'buy':
+      quantity = float(execution['quantity'])
+      price = execution['price']
+      total_cost = quantity * price
+      avg_buy_list.append(total_cost)
+      total_buy_quantity.append(quantity)
+    if execution['action'] == 'sell':
+      quantity = float(execution['quantity'])
+      price = execution['price']
+      total_cost = quantity * price
+      avg_sell_list.append(total_cost)
+      total_sell_quantity.append(quantity)
+
+  avg_buy_price = sum(avg_buy_list) / sum(total_buy_quantity)
+  avg_sell_price = sum(avg_sell_list) / sum(total_sell_quantity)
+  total_purchase_cost = sum(avg_buy_list)
+  gross_return = sum(avg_sell_list) - sum(avg_buy_list)
+
+  data['avg_sell_price'] = avg_sell_price
+  data['avg_buy_price'] = avg_buy_price
+  data['total_cost'] = total_purchase_cost
+  data['gross_return'] = gross_return
+  data['net_return'] = gross_return - sum(total_commission)
+  data['total_commission'] = sum(total_commission)
+  data['percent_return'] = round((((gross_return - sum(total_commission))/ total_purchase_cost) * 100), 2)
+  
+  risk = (avg_buy_price - trade.stoploss) * sum(total_buy_quantity)
+  data['net_R'] = (gross_return - sum(total_commission)) / risk
+
+
+  return data
 
 # Endpoint: executions/
 class ExecutionListView(APIView):
@@ -22,14 +68,22 @@ class ExecutionListView(APIView):
   # Description: Adds execution to the specified trade
   def post(self, request):
     
-    print("REQUEST USER ->", request.user.id)
-    # request.data['owner'] = request.user.id
-    # print("REQUEST DATA ->", request.data)
     execution_to_add = ExecutionSerializer(data=request.data)
     try:
       if execution_to_add.is_valid():
         execution_to_add.save()
-        return Response(execution_to_add.data, status.HTTP_201_CREATED)
+        trade = Trade.objects.get(pk=request.data['trade'])
+        executions = Execution.objects.filter(trade=trade)
+        # contains all values in the dict even if null
+        data = set_trade_stats(executions, trade)
+
+        serialized_trade = PopulatedTradeSerializer(trade, data=data, partial=True)
+        if serialized_trade.is_valid():
+          serialized_trade.save()
+
+          return Response(serialized_trade.data, status.HTTP_201_CREATED)
+        print(serialized_trade.errors)
+        return Response(serialized_trade.errors, status.HTTP_422_UNPROCESSABLE_ENTITY)
       print(execution_to_add.errors)
       return Response(execution_to_add.errors, status.HTTP_422_UNPROCESSABLE_ENTITY)
     except Exception as e:
@@ -68,16 +122,23 @@ class ExecutionDetailView(APIView):
   def put(self, request, pk):
     try:
       execution = self.get_execution(pk)
-      # print('REQUEST USER', request.user)
-      # print('EXECUTION OWNER', execution.owner)
-      
-      owner = request.data['owner']
       if execution.owner != request.user:
         raise PermissionDenied('Unauthorized')
       execution_to_update = ExecutionSerializer(execution, request.data, partial=True)
       if execution_to_update.is_valid():
         execution_to_update.save()
-        return Response(execution_to_update.data, status.HTTP_202_ACCEPTED)
+        trade = Trade.objects.get(pk=request.data['trade'])
+        executions = Execution.objects.filter(trade=trade)
+        # contains all values in the dict even if null
+        data = set_trade_stats(executions, trade)
+
+        serialized_trade = PopulatedTradeSerializer(trade, data=data, partial=True)
+        if serialized_trade.is_valid():
+          serialized_trade.save()
+
+          return Response(serialized_trade.data, status.HTTP_201_CREATED)
+        print(serialized_trade.errors)
+        return Response(serialized_trade.errors, status.HTTP_422_UNPROCESSABLE_ENTITY)
       return Response(execution_to_update.errors, status.HTTP_422_UNPROCESSABLE_ENTITY)
     except Exception as e:
       print(e)

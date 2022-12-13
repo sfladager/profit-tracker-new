@@ -1,10 +1,10 @@
 from .common import UserSerializer
 from trades.serializers.common import TradeSerializer
-from trades.serializers.populated import PopulatedExecutionsSerializer
+from trades.serializers.populated import PopulatedTradeSerializer
 # PopulatedExecutionsSerializer tried running this serilaizer like for single trade, but won't let me run the get_trade_stats function. 
 
 class PopulatedUserSerializer(UserSerializer):
-  trades = PopulatedExecutionsSerializer(many=True)
+  trades = PopulatedTradeSerializer(many=True)
 
 
   # def set_trade_stats(self):
