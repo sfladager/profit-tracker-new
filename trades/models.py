@@ -46,10 +46,17 @@ class Trade(models.Model):
   target = models.FloatField(blank=True, default=None, null=True)
   stoploss = models.FloatField(blank=True, default=None, null=True)
   expected_r = models.FloatField(blank=True, default=None, null=True)
-  avg_buy_price = models.FloatField(blank=True, default=None, null=True)
   setup = models.CharField(max_length=100)
   mistakes = models.CharField(max_length=200)
   notes = models.TextField()
+  avg_buy_price = models.FloatField(blank=True, default=None, null=True)
+  avg_sell_price = models.FloatField(blank=True, default=None, null=True)
+  total_cost = models.FloatField(blank=True, default=None, null=True)
+  gross_return = models.FloatField(blank=True, default=None, null=True)
+  net_return = models.FloatField(blank=True, default=None, null=True)
+  total_commission = models.FloatField(blank=True, default=None, null=True)
+  percent_return = models.FloatField(blank=True, default=None, null=True)
+  net_R = models.FloatField(blank=True, default=None, null=True)
   owner_of_trade = models.ForeignKey(
     'jwt_auth.User',
     related_name='trades',

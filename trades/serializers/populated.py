@@ -8,8 +8,7 @@ class PopulatedExecutionsSerializer(TradeSerializer):
 
   def set_trade_stats(self):
     data = self.data
-
-    # print(data['executions'])
+ 
     avg_buy_list = []
     avg_sell_list = []
     total_buy_quantity = []
@@ -30,10 +29,6 @@ class PopulatedExecutionsSerializer(TradeSerializer):
         total_cost = quantity * price
         avg_sell_list.append(total_cost)
         total_sell_quantity.append(quantity)
-        
-    # print('BUY LIST', avg_buy_list)
-    # print('BUY size', total_buy_quantity)
-    # print('AVG SELL PRICE', sum(avg_sell_list) / sum(total_sell_quantity))
 
     avg_buy_price = sum(avg_buy_list) / sum(total_buy_quantity)
     avg_sell_price = sum(avg_sell_list) / sum(total_sell_quantity)

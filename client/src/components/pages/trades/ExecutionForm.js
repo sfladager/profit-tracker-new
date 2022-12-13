@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 import { getToken } from '../../../helpers/auth'
@@ -16,7 +16,9 @@ import { ChevronLeft } from 'react-feather'
 const ExecutionForm = ({ handleSubmit, formFields, setFormFields, errors, setErrors, formName }) => {
 
   // ! Navigation
-  const { TradeId } = useParams()
+  const { TradeId, ExecutionId } = useParams()
+  
+  const navigate = useNavigate()
 
   // ! State
   const [ execution, setExecution ] = useState([])
@@ -32,36 +34,18 @@ const ExecutionForm = ({ handleSubmit, formFields, setFormFields, errors, setErr
     setErrors({ ...errors, [e.target.name]: '', message: '' })
   }
 
-  // Get data from blogs to populate categories ang tags dropdowns
-  useEffect(() => {
-    // const getData = async () => {
-    //   try {
-    //     const data  = await axios.post('/api/executions/',  formFields, {
-    //       headers: {
-    //         Authorization: `Bearer ${getToken()}`,
-    //       },
-    //     })
-    //     console.log(data)
-        
-    //   } catch (err) {
-    //     console.log(err)
-    //   }
-    // }
-    // const getForm = async () => {
-    //   try {
-    //     const data  = await axios.get('/api/trades/form/',  {
-    //       headers: {
-    //         Authorization: `Bearer ${getToken()}`,
-    //       },
-    //     })
-    //     console.log(data)
-    //     setFormModel(data)
-    //   } catch (err) {
-    //     console.log(err)
-    //   }
-    // }
-    // getForm()
-  }, [])
+  const deleteExecution = async (e) => {
+    try {
+      await axios.delete(`/api/executions/${ExecutionId}`, {
+        headers: {
+          Authorization: `Bearer ${getToken()}`,
+        },
+      })
+      navigate(`/trades/${TradeId}`)
+    } catch (err) {
+      console.log(err)
+    }
+  }
 
 
 
@@ -84,7 +68,6 @@ const ExecutionForm = ({ handleSubmit, formFields, setFormFields, errors, setErr
               className="trade-form-input"
               onChange={handleChange}
               value={formFields.date}
-              // placeholder="yyy/mm/dd"
               required
             />
             {/* time */}
@@ -132,7 +115,14 @@ const ExecutionForm = ({ handleSubmit, formFields, setFormFields, errors, setErr
               placeholder="ex. 23.48"
               required
             />
-            <Button type="submit" className="button-blue">{formName}</Button>
+            {formName === 'Edit Execution' ?
+              <div className="edit-delete-btns">
+                <Button type="submit" className="button-blue btn-50">{formName}</Button>
+                <Button onClick={deleteExecution} className="button-red btn-50">delete</Button>
+              </div>
+              :
+              <Button type="submit" className="button-blue">{formName}</Button>
+            }
           </form>
         </Container>
       </Container>

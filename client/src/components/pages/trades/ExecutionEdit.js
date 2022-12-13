@@ -1,52 +1,73 @@
-import { useEffect, useState } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
+
 import { getToken, getPayload } from '../../../helpers/auth'
 
-import SessionForm from './SessionForm'
+import ExecutionForm from './ExecutionForm'
 
-// Bootstrap
+// Bootstrap imports
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 
 
-
-const SessionNew = () => {
+const ExecutionEdit = () => {
 
   // ! Navigation
+  const { TradeId, ExecutionId } = useParams()
   const navigate = useNavigate()
 
   // ! State
   const [ formFields, setFormFields ] = useState({
-    session_date: '',
-    session_rating: '',
-    session_notes: '',
-    owner_of_session: 0,
+    date: '',
+    time: '',
+    action: '',
+    quantity: '',
+    price: '',
+    trade: parseInt(TradeId),
+    owner: 0,
   })
 
   const [ errors, setErrors ] = useState(null)
 
   // ! Executions
-
   useEffect(() => {
     const user = getPayload()
-    setFormFields({ ...formFields, owner_of_session: user.sub })
+    setFormFields({ ...formFields, owner: user.sub })
+  }, [])
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const { data } = await axios.get(`/api/executions/${ExecutionId}/`, {
+          headers: {
+            Authorization: `Bearer ${getToken()}`,
+          },
+        })
+        console.log(data)
+        setFormFields(data)
+      } catch (err) {
+        console.log(err)
+        setErrors(err.response.data)
+      }
+    }
+    getData()
   }, [])
 
 
-  // submit execution to database
+  // submit edit execution to database
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const { data } = await axios.post('/api/sessions/', formFields, {
+      const { data } = await axios.put(`/api/executions/${ExecutionId}/`, formFields, {
         headers: {
           Authorization: `Bearer ${getToken()}`,
         },
       })
       console.log('SUCCESS', data)
-      navigate('/sessions')
+      navigate(`/trades/${TradeId}`)
     } catch (err) {
       console.log(err.response.data)
       setErrors(err.response.data)
@@ -56,17 +77,17 @@ const SessionNew = () => {
   return (
     <div className="trade-form-page">
       <Container className="trade-form-container mt-4">
-        <SessionForm
+        <ExecutionForm
           handleSubmit={handleSubmit} 
           formFields={formFields}
           setFormFields={setFormFields}
           errors={errors}
           setErrors={setErrors}
-          formName="Add Session" 
+          formName="Edit Execution" 
         />
       </Container>
     </div>
   )
 }
 
-export default SessionNew
+export default ExecutionEdit

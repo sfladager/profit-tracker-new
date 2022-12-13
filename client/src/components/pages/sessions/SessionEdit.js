@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate,useParams, Link } from 'react-router-dom'
 import axios from 'axios'
 import { getToken, getPayload } from '../../../helpers/auth'
 
@@ -16,6 +16,8 @@ import Button from 'react-bootstrap/Button'
 const SessionNew = () => {
 
   // ! Navigation
+  // ! Location Variables
+  const { SessionId } = useParams()
   const navigate = useNavigate()
 
   // ! State
@@ -35,18 +37,37 @@ const SessionNew = () => {
     setFormFields({ ...formFields, owner_of_session: user.sub })
   }, [])
 
+  // GET session data
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const { data } = await axios.get(`/api/sessions/${SessionId}`, {
+          headers: {
+            Authorization: `Bearer ${getToken()}`,
+          },
+        })
+        // console.log(data)
+        setFormFields(data)
+      } catch (err) {
+        console.log(err.response.data)
+        setErrors(err.response.data)
+      }
+    }
+    getData()
+  }, [SessionId])
 
-  // submit execution to database
+
+  // send updates to database
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const { data } = await axios.post('/api/sessions/', formFields, {
+      const { data } = await axios.put(`/api/sessions/${SessionId}`, formFields, {
         headers: {
           Authorization: `Bearer ${getToken()}`,
         },
       })
       console.log('SUCCESS', data)
-      navigate('/sessions')
+      navigate('/sessions/')
     } catch (err) {
       console.log(err.response.data)
       setErrors(err.response.data)
@@ -62,7 +83,7 @@ const SessionNew = () => {
           setFormFields={setFormFields}
           errors={errors}
           setErrors={setErrors}
-          formName="Add Session" 
+          formName="Edit Session" 
         />
       </Container>
     </div>

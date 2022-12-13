@@ -17,6 +17,23 @@ $green: #00C800;
   min-height: 100vh;
 }
 
+a {
+  text-decoration: none;
+  color: $primary
+}
+
+.win {
+  background-color: $green;
+}
+
+.open {
+  background-color: #e6e610
+}
+
+.loss {
+  background-color: #f0571f;
+}
+
 
 .icons {
   color: $blue;
@@ -39,6 +56,14 @@ $green: #00C800;
     background-color: darken(#a1a1a1, 5%);
   }
 }
+.button-red {
+  background: #d80707;
+  color: #fff;
+  border: none;
+  &:hover {
+    background-color: darken(#d80707, 5%);
+  }
+};
 
 .edit-btn {
   background: #f6f208;
@@ -61,6 +86,29 @@ $green: #00C800;
     width: 26px;
   }
 }
+.add-btn {
+  // background-color: $blue;
+  border-radius: 5px;
+  // padding: 2px 0;
+  height: 28px;
+  width: 28px;
+  margin: 2px 5px 2px 0;
+  color: $blue;
+  &:hover {
+    // background-color: darken($blue, 5%);
+    transition: width 0.5s, height 0.5s;
+    height: 30px;
+    width: 30px;
+  } 
+}
+.edit-delete-btns {
+  display: flex;
+  gap: 10px;
+  .btn-50 {
+    width: 50%;
+  }
+}
+
 
 // Navbar
 .navbar {
@@ -198,11 +246,78 @@ $green: #00C800;
     border-bottom: 1px solid $primary;
   }
 }
-
+// Single Trade page
+.trade-single-page {
+  margin: 0;
+  width: 100%;
+  .trade-page-container {
+    margin: 0 15px;
+  }
+  .trade-recap-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 90%;
+  }
+  .back-btn-container {
+    margin: 0 24px;
+  }
+  .execution-title-box, .trade-heading-box-top {
+    background-color: $primary;
+    color: #fff;
+    padding: 5x;
+  }
+  .trade-stats-box {
+    margin: 10px 0;
+  }
+  .trade-heading-box-top, .trade-status-box, .single-stat, .execution-title-box, .execution-box, .trade-info-small   {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(10, 10, 10, 0.2);
+    padding: 5px;
+    h3 {
+      margin: 0;
+      padding-left: 5px;
+    }
+    p{
+      margin: 0;
+      padding-right: 5px;
+    }
+    .status {
+      padding: 5px 15px;
+      border-radius: 5px;
+      font-weight: bold;
+      box-shadow: 1px 1px;
+    }
+    .symbol {
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+  }
+  .single-stat {
+    font-size: 1.2rem;
+  }
+  .scrollbar {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  .execution-box {
+    flex-direction: column;
+    align-items: space-between;
+  }
+}
+.execution-box-top, .execution-box-bottom {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  span {
+    font-weight: bold;
+  }
+}
 
 // Sessions
-// sessions list column
-
 .sessions-page-container {
   display: flex;
   flex-direction: column;
@@ -230,21 +345,6 @@ $green: #00C800;
       font-size: 1.3rem;
       margin: 2px 0 2px 5px;
     }
-    .add-session-btn {
-      background-color: $blue;
-      border-radius: 5px;
-      padding: 2px 0;
-      height: 28px;
-      width: 28px;
-      margin: 2px 5px 2px 0;
-      color: #000;
-      &:hover {
-        background-color: darken($blue, 5%);
-        transition: width 0.5s, height 0.5s;
-        height: 30px;
-        width: 30px;
-      } 
-    }
     .session-tile {
       display: flex;
       justify-content: space-between;
@@ -265,17 +365,11 @@ $green: #00C800;
       font-weight: bold;
     }
   }
-
-  .green {
-    background-color: $green;
-  }
-
-  .yellow {
-    background-color: #e6e610
-  }
-
-  .red {
-    background-color: #f0571f;
+   // editor on blog forms
+  .wrapperClassName {
+    border: 1px solid  rgba(10, 10, 10, 0.2);
+    margin-bottom: 15px;
+    border-radius: 5px;
   }
 
 
@@ -306,6 +400,28 @@ $green: #00C800;
     margin-left: 5px;
   }
 }
+// Single trade page
+.trade-single-page .trade-recap-container  {
+  flex-direction: row;
+  width: 100%;
+  margin: 5px;
+}
+.trade-info-side, .trade-info-large {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  margin: 0 5px;
+}
+.trade-info-large {
+  width: 60%;
+  height: calc(100vh - 100px);
+  .trade-info-small {
+    width: 100%;
+    margin: 0 5px;
+  }
+}
+
+// Sessions page
 .sessions-page-container {
   flex-direction: row;
   justify-content: space-between;
@@ -329,4 +445,5 @@ $green: #00C800;
     border-bottom: 1px solid rgba(10, 10, 10, 0.2);
   }
 }
+
 }

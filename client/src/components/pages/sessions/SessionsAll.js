@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useFetcher, Link, useParams } from 'react-router-dom'
+import { Link, useParams, request } from 'react-router-dom'
 import axios from 'axios'
 import { getToken } from '../../../helpers/auth'
 
@@ -15,7 +15,7 @@ import { PlusSquare } from 'react-feather'
 
 const SessionsAll = () => {
   // ! Navigation
-
+  
   const { SessionId } = useParams()
 
   // ! State
@@ -43,32 +43,22 @@ const SessionsAll = () => {
     getData()
   }, [])
 
-  // Get sessoin from database
+  // Get session from database
   const getSession = async (e) => {
+    console.log(e.target.id)
     try {
-      const { data }  = await axios.get('/api/sessions/', {
+      const { data } = await axios.get(`api/sessions/${e.target.id}/`, {
         headers: {
           Authorization: `Bearer ${getToken()}`,
         },
       })
       console.log('SUCCESS', data)
-      console.log('ID', data.id)
-      // setSessionData(data)
+      setSessionData(data)
     } catch (err) {
       console.log(err.response.data)
       setErrors(err.response.data)
     }
   }
-
-  // useEffect(() => {
-  //   sessionsList.map(session => {
-  //     if (document.body.classList.contains('rating-p')) {
-  //       if (session.session_rating > 3) {
-  //         return document.body.classList.add('green')
-  //       }
-  //     }
-  //   })
-  // }, [sessionsList])
 
   return (
     
@@ -78,19 +68,21 @@ const SessionsAll = () => {
         <div className="session-list-heading">
           <h1>Trading Sessions</h1>
           <Link to={'/sessions/single/add'}>
-            <PlusSquare className="add-session-btn" />
+            <PlusSquare className="add-btn" />
           </Link>
         </div>
         {sessionsList ?
-          sessionsList.map(session => {
+          sessionsList.sort((a, b) => a.session_date > b.session_date ? -1 : 1).map(session => {
             return (
-              <div key={session.id} onClick={getSession} className="session-tile">
+                
+              <div onClick={getSession} id={session.id}  key={session.id} className="session-tile">
                 <div className="date-box">
                   <p>Date:</p>
                   <p className="session-date">{session.session_date}</p>
                 </div>
                 <p className="rating-p">{session.session_rating}</p>
               </div>
+
             )
           })
           :
@@ -98,18 +90,26 @@ const SessionsAll = () => {
         }
       </div>
       <div className="session-main-view">
-        <div className="sesion-main-heading">
-          <p>Session Date:</p>
-          <p>Session rating:</p>
-          <Button className="edit-btn">Edit</Button>
-        </div>
-        <div className="sesion-stats">
-          <p>SESSION STATS GO HERE</p>
-        </div>
-        <div className="session-main-body">
-          <p>Notes:</p>
-          <p>Editor notes goes here</p>
-        </div>
+        {sessionData ? 
+          <>
+            <div className="sesion-main-heading">
+              <p>Session Date: {sessionData.session_date}</p>
+              <p>Session rating: {sessionData.session_rating}</p>
+              <Link to={`/sessions/${sessionData.id}/edit`}>
+                <Button className="edit-btn">Edit</Button>
+              </Link>
+            </div>
+            <div className="sesion-stats">
+              <p>SESSION STATS GO HERE</p>
+            </div>
+            <div className="session-main-body">
+              <p>Notes:</p>
+              <p>{sessionData.session_notes}</p>
+            </div>
+          </>
+          :
+          errors ? <p>Something went wrong! Try again later</p> : <p>Loading...</p>
+        }
       </div>
 
     </div>

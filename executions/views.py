@@ -70,6 +70,7 @@ class ExecutionDetailView(APIView):
       execution = self.get_execution(pk)
       # print('REQUEST USER', request.user)
       # print('EXECUTION OWNER', execution.owner)
+      
       owner = request.data['owner']
       if execution.owner != request.user:
         raise PermissionDenied('Unauthorized')

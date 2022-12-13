@@ -47,6 +47,21 @@ class SessionDetailView(APIView):
       print(e)
       return Response(str(e), status.HTTP_500_INTERNAL_SERVER_ERROR)
 
+    # GET session
+  def get(self, request, pk):
+    try:
+      session = self.get_session(pk)
+      print("REQUEST SESSION ->", session.owner_of_session)
+      # owner = request.data['owner']
+      print("REQUEST DATA ->", request.user)
+      if session.owner_of_session != request.user:
+        raise PermissionDenied('Unauthorized')
+      serialized_sessions = SessionSerializer(session)
+      return Response(serialized_sessions.data)
+    except Exception as e:
+      print(e)
+      return Response(str(e), status.HTTP_500_INTERNAL_SERVER_ERROR)
+
   # PUT Edit session
   def put(self, request, pk):
     try:

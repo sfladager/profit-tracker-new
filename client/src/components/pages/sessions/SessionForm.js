@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate, Link, useParams } from 'react-router-dom'
 import axios from 'axios'
 import { getToken } from '../../../helpers/auth'
-
+import TextEditor from '../../editor/TextEditor'
 
 // Bootstrap
 import Container from 'react-bootstrap/Container'
@@ -15,12 +15,30 @@ import { ChevronLeft } from 'react-feather'
 
 const SessionForm = ({ handleSubmit, formFields, setFormFields, errors, setErrors, formName }) => {
 
+  // ! Navigation
+  const { SessionId } = useParams()
+  const navigate = useNavigate()
+
   // Get values and add to formfields object 
   const handleChange = (e) => {
     // console.log(`${e.target.name} - ${e.target.value}`)
     setFormFields({ ...formFields, [e.target.name]: e.target.value })
     setErrors({ ...errors, [e.target.name]: '', message: '' })
   }
+
+  const deleteSession = async (e) => {
+    try {
+      await axios.delete(`/api/sessions/${SessionId}`, {
+        headers: {
+          Authorization: `Bearer ${getToken()}`,
+        },
+      })
+      navigate('/sessions/')
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
 
   return (
     <div className="trade-form-page">
@@ -34,10 +52,10 @@ const SessionForm = ({ handleSubmit, formFields, setFormFields, errors, setError
           <h1>{formName}</h1> 
           <form className="trade-form" onSubmit={handleSubmit}>
             {/* Date */}
-            <label htmlFor="date">Date</label>
+            <label htmlFor="session_date">Date</label>
             <input
               type="date"
-              name="date"
+              name="session_date"
               className="trade-form-input"
               onChange={handleChange}
               value={formFields.session_date}
@@ -45,10 +63,10 @@ const SessionForm = ({ handleSubmit, formFields, setFormFields, errors, setError
               required
             />
             {/* Rating */}
-            <label htmlFor="quantity">Quantity</label>
+            <label htmlFor="session_rating">Rating</label>
             <input
               type="number"
-              name="quantity"
+              name="session_rating"
               className="trade-form-input"
               onChange={handleChange}
               value={formFields.session_rating}
@@ -56,17 +74,20 @@ const SessionForm = ({ handleSubmit, formFields, setFormFields, errors, setError
               required
             />
             {/* Notes */}
-            <label htmlFor="price">Price</label>
-            <input
-              type="number"
-              name="price"
-              className="trade-form-input"
-              onChange={handleChange}
-              value={formFields.price}
-              placeholder="ex. 23.48"
-              required
+            <label htmlFor="session_notes">Notes</label>
+            <TextEditor
+              formFields={formFields}
+              setFormFields={setFormFields}
             />
-            <Button type="submit" className="button-blue">{formName}</Button>
+            {errors ? errors.detail : ''}
+            {formName === 'Edit Session' ?
+              <div className="edit-delete-btns">
+                <Button type="submit" className="button-blue btn-50">{formName}</Button>
+                <Button onClick={deleteSession} className="button-red btn-50">delete</Button>
+              </div>
+              :
+              <Button type="submit" className="button-blue">{formName}</Button>
+            }
           </form>
         </Container>
       </Container>

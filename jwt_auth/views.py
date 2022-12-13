@@ -70,11 +70,9 @@ class ProfileView(APIView):
   def get(self, request):
     print("REQUEST USER ->", request.user)
     profile_to_get = User.objects.get(pk=request.user.id)
-    
     serialized_profile = PopulatedUserSerializer(profile_to_get)
-
-    print('CALCS ->', serialized_profile)
-    return Response(serialized_profile.data)
+    # trades_with_stats = serialized_profile.get_trade_stats()
+    return Response (serialized_profile.data)
 
   #edit user profile
   def put(self, request):
