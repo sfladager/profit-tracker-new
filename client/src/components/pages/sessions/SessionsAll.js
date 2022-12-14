@@ -4,6 +4,7 @@ import axios from 'axios'
 import { getToken } from '../../../helpers/auth'
 import parse from 'html-react-parser'
 
+import { Scrollbar } from 'react-scrollbars-custom'
 
 // Bootstrap
 import Container from 'react-bootstrap/Container'
@@ -72,30 +73,40 @@ const SessionsAll = () => {
             <PlusSquare className="add-btn" />
           </Link>
         </div>
-        {sessionsList ?
-          sessionsList.sort((a, b) => a.session_date > b.session_date ? -1 : 1).map(session => {
-            return (
-                
-              <div onClick={getSession} id={session.id}  key={session.id} className="session-tile">
-                <div className="date-box">
-                  <p>Date:</p>
-                  <p className="session-date">{session.session_date}</p>
+        <Scrollbar>
+          {sessionsList ?
+            sessionsList.sort((a, b) => a.session_date > b.session_date ? -1 : 1).map(session => {
+              return (
+                  
+                <div onClick={getSession} id={session.id}  key={session.id} className="session-tile">
+                  <div className="date-box">
+                    <p>Date:</p>
+                    <p className="session-date">{session.session_date}</p>
+                  </div>
+                  {session.session_rating === 3 ? 
+                    <p className="rating-p open">{session.session_rating}</p> 
+                    : 
+                    session.session_rating > 3 ? 
+                      <p className="rating-p win">{session.session_rating}</p> 
+                      :
+                      <p className="rating-p loss">{session.session_rating}</p> 
+                  }
+                  
                 </div>
-                <p className="rating-p">{session.session_rating}</p>
-              </div>
 
-            )
-          })
-          :
-          errors ? <p>Something went wrong, try again later.</p> : <p>Loading...</p>
-        }
+              )
+            })
+            :
+            errors ? <p>Something went wrong, try again later.</p> : <p>Loading...</p>
+          }
+        </Scrollbar>
       </div>
       <div className="session-main-view">
         {sessionData ? 
           <>
             <div className="sesion-main-heading">
-              <p>Session Date: {sessionData.session_date}</p>
-              <p>Session rating: {sessionData.session_rating}</p>
+              <p>Session Date: <span>{sessionData.session_date}</span></p>
+              <p>Session rating: <span>{sessionData.session_rating}</span></p>
               <Link to={`/sessions/${sessionData.id}/edit`}>
                 <Button className="edit-btn">Edit</Button>
               </Link>
@@ -104,7 +115,7 @@ const SessionsAll = () => {
               <p>SESSION STATS GO HERE</p>
             </div>
             <div className="session-main-body">
-              <p>Notes:</p>
+              <p className="session-notes-title">Notes:</p>
               <p>{sessionData.session_notes && parse(sessionData.session_notes) }</p>
             </div>
           </>

@@ -2,6 +2,9 @@
   box-sizing: border-box;
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   margin: 0;
+  p {
+    margin: 0;
+  }
 }
 
 // Variables
@@ -33,7 +36,6 @@ a {
 .loss {
   background-color: #f0571f;
 }
-
 
 .icons {
   color: $blue;
@@ -68,9 +70,12 @@ a {
 .edit-btn {
   background: #f6f208;
   color: #000;
-  border: none;
+  // border: none;
+  border: 1px solid rgba(10, 10, 10, 0.2);
   &:hover {
     background-color: darken(#f6f208, 10%);
+    color: #000;
+    border: 1px solid rgba(10, 10, 10, 0.2);
   }
 }
 
@@ -135,12 +140,24 @@ a {
   }
 }
 
-// Dashboard
+// ! Dashboard 
 .account-info-container {
   .title-box {
     display: flex;
     justify-content: space-between;
+    color: #fff;
+    background-color: $primary;
+    align-items: center;
+    padding: 8px 12px;
   }
+}
+.main-stats-container {
+  display: flex;
+  justify-content: space-between;
+}
+.graph-container {
+  display: flex;
+  height: 250px;
 }
 
 // Dropzone image
@@ -207,25 +224,53 @@ a {
   }
 }
 
-// ! Dashboard 
-// .account-info-stats-container {
+// ! Trade list page
 
-// }
-.main-stats-container {
+.trades-page-title-heading, .trade-list-row  {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  background-color: $primary;
+  padding: 5px 10px;
+  h3 {
+    margin: 0;
+  }
+  .add-btn {
+    margin: 0;
+    padding: 0;
+  }
+  p {
+    display: flex;
+    align-items: flex-start;
+    text-align: center;
+    font-size: 0.8rem;
+    padding: 5px;
+  }
 }
-.graph-container {
+.trades-list-container {
+  margin: 0;
   width: 100%;
 }
-
-// Trade list page
 .trade-list-row {
   border-bottom: 1px solid #000;
   text-decoration: none;
+  background-color: #fff;
+  color: $primary;
+  .status {
+    padding: 5px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    border: 1px solid rgba(10, 10, 10, 0.2);
+    width: 65px;
+    justify-content: center;
+  }
+}
+.trade-status {
+  margin: 0 auto;
 }
 
-// Trade form and execution form
+// ! Trade form and execution form
 .trade-form-container {
   margin-bottom: 20px;
   margin-top: 20px;
@@ -255,8 +300,11 @@ a {
     border: none;
     border-bottom: 1px solid $primary;
   }
+  textarea {
+    margin-bottom: 15px;
+  }
 }
-// Single Trade page
+// ! Single Trade page
 .trade-single-page {
   margin: 0;
   width: 100%;
@@ -298,7 +346,7 @@ a {
       padding: 5px 15px;
       border-radius: 5px;
       font-weight: bold;
-      box-shadow: 1px 1px;
+      border: 1px solid rgba(10, 10, 10, 0.2);
     }
     .symbol {
       font-weight: bold;
@@ -326,9 +374,27 @@ a {
     font-weight: bold;
   }
 }
+.execution-link, .trade-list-link {
+  &:hover {
+    color: lighten($primary, 10%);
+  }
+}
 // Chart on Trade Single page
+.trade-info-large {
+  margin-bottom: 15px;
+  h3 {
+    padding: 0;
+  }
+}
 #tradingview_38969 {
   height: 300px;
+}
+.trade-chart {
+  margin-bottom: 15px;
+}
+.trade-info-small > h3 {
+  padding-left: 0;
+
 }
 // Sessions
 .sessions-page-container {
@@ -371,13 +437,36 @@ a {
     }
     .rating-p {
       border: 1px solid rgba(10, 10, 10, 0.2);
-      padding: 10px;
+      padding: 5px 15px;
+      margin-right: 10px;
+      border-radius: 5px;
+      font-weight: bold;
+      width: 65px;
+      text-align: center;
     }
     .session-date {
       font-size: 1.1rem;
       font-weight: bold;
     }
+    .sesion-main-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-right: 10px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid rgba(10, 10, 10, 0.2);
+      span {
+        font-weight: bold;
+      }
+    }
+    .session-main-body {
+      .session-notes-title {
+        border-bottom: 1px solid rgba(10, 10, 10, 0.2);
+        font-weight: bold;
+      }
+    }
   }
+
    // editor on blog forms
   .wrapperClassName {
     border: 1px solid  rgba(10, 10, 10, 0.2);

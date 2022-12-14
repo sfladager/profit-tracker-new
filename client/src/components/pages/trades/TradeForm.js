@@ -35,12 +35,11 @@ const TradeForm = ({ handleSubmit, formFields, setFormFields, errors, setErrors,
   useEffect(() => {
     const getData = async () => {
       try {
-        const data  = await axios.get('/api/trades/',  {
+        const { data }  = await axios.get('/api/trades/',  {
           headers: {
             Authorization: `Bearer ${getToken()}`,
           },
         })
-        console.log(data)
         setTradeModel(data)
       } catch (err) {
         console.log(err)
@@ -48,12 +47,11 @@ const TradeForm = ({ handleSubmit, formFields, setFormFields, errors, setErrors,
     }
     const getForm = async () => {
       try {
-        const data  = await axios.get('/api/trades/form/',  {
+        const { data }  = await axios.get('/api/trades/form/',  {
           headers: {
             Authorization: `Bearer ${getToken()}`,
           },
         })
-        console.log(data)
         setFormOptions(data)
       } catch (err) {
         console.log(err)
@@ -62,6 +60,19 @@ const TradeForm = ({ handleSubmit, formFields, setFormFields, errors, setErrors,
     getData()
     getForm()
   }, [])
+
+  const deleteExecution = async (e) => {
+    try {
+      await axios.delete(`/api/trades/${TradeId}`, {
+        headers: {
+          Authorization: `Bearer ${getToken()}`,
+        },
+      })
+      navigate(`/trades/${TradeId}`)
+    } catch (err) {
+      console.log(err)
+    }
+  }
 
 
 
@@ -73,41 +84,39 @@ const TradeForm = ({ handleSubmit, formFields, setFormFields, errors, setErrors,
             <ChevronLeft className="back-btn" />
           </Link>
         </div>
-        <h1>{formName}</h1>
-        <form onSubmit={handleSubmit}>
-          <Container>
+        <Container className="trade-form-container">
+          <h1>{formName}</h1>
+          <form className="trade-form" onSubmit={handleSubmit}>
             {/* Date opened */}
-            <label htmlFor="date-opened">Date opened <span className="required">*</span></label>
+            <label htmlFor="date_opened">Date opened <span className="required">*</span></label>
             <input
               type="date"
-              name="date-opened"
+              name="date_opened"
               className="trade-form-input"
               onChange={handleChange}
               value={formFields.date_opened}
-              // placeholder="yyy/mm/dd"
               required
             />
-            {/* Date closed */}
-            <label htmlFor="date-closed">Date closed</label>
-            <input
-              type="date"
-              name="date-closed"
-              className="trade-form-input"
-              onChange={handleChange}
-              value={formFields.date_closed}
-              // placeholder="yyy/mm/dd"
-            />
-            {/* Asset class */}
-            <label htmlFor="asset-class">Asset class</label>
-            <input
-              type="text"
-              name="asset-class"
-              className="trade-form-input"
-              onChange={handleChange}
-              value={formFields.asset_class}
-              placeholder="Asset class"
-              required
-            />
+            {/* Dropdown selectors class */}
+            {formModel && formModel.map((data, i)=> {
+              return (
+                <>
+                  <label key={i} htmlFor={data.name}>{data.name}</label>
+                  <select 
+                    name={data.name} 
+                    className="trade-form-input" 
+                    onChange={handleChange}
+                    value={formFields.item}
+                  >
+                    {data.choices && data.choices.map((item, i) => {
+                      return (
+                        <option key={i} value={item[0]}>{item[1]}</option>
+                      )
+                    })}
+                  </select>
+                </>
+              )
+            })}
             {/* Symbol */}
             <label htmlFor="symbol">Symbol</label>
             <input
@@ -116,12 +125,79 @@ const TradeForm = ({ handleSubmit, formFields, setFormFields, errors, setErrors,
               className="trade-form-input"
               onChange={handleChange}
               value={formFields.symbol}
-              placeholder="Symbol"
+              placeholder="Ex. AAPL"
               required
             />
-          </Container>
-
-        </form>
+            {/* Target */}
+            <label htmlFor="target">Target</label>
+            <input
+              type="number"
+              name="target"
+              className="trade-form-input"
+              onChange={handleChange}
+              value={formFields.target}
+              placeholder="Ex. 45.75"
+            />
+            {/* Stoploss */}
+            <label htmlFor="stoploss">Stoploss</label>
+            <input
+              type="text"
+              name="stoploss"
+              className="trade-form-input"
+              onChange={handleChange}
+              value={formFields.stoploss}
+              placeholder="Ex. 45.00"
+            />
+            {/* Expected R */}
+            <label htmlFor="expected_r">Expected R</label>
+            <input
+              type="text"
+              name="expected_r"
+              className="trade-form-input"
+              onChange={handleChange}
+              value={formFields.expected_r}
+              placeholder="Ex. 2.0"
+            />
+            {/* Setup */}
+            <label htmlFor="setup">Setup</label>
+            <input
+              type="text"
+              name="setup"
+              className="trade-form-input"
+              onChange={handleChange}
+              value={formFields.setup}
+              placeholder="Ex. Dip buy"
+            />
+            {/* Mistakes */}
+            <label htmlFor="mistakes">mistakes</label>
+            <input
+              type="text"
+              name="mistakes"
+              className="trade-form-input"
+              onChange={handleChange}
+              value={formFields.mistakes}
+              placeholder="Ex. Didn't follow plan"
+            />
+            {/* Notes */}
+            <label htmlFor="symbol">Symbol</label>
+            <textarea 
+              name="notes"
+              className="trade-form-input"
+              rows="10"
+              onChange={handleChange}
+              value={formFields.notes}
+              placeholder="Add some notes about the trade"
+            ></textarea>
+            {formName === 'Edit Trade' ?
+              <div className="edit-delete-btns">
+                <Button type="submit" className="button-blue btn-50">{formName}</Button>
+                <Button onClick={deleteExecution} className="button-red btn-50">delete</Button>
+              </div>
+              :
+              <Button type="submit" className="button-blue">{formName}</Button>
+            }
+          </form>
+        </Container>
       </Container>
     </div>
   )

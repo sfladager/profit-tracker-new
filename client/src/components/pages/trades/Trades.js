@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import axios from 'axios'
+import { Scrollbar } from 'react-scrollbars-custom'
 
 // Bootstrap imports
 import Container from 'react-bootstrap/Container'
@@ -10,6 +11,8 @@ import Button from 'react-bootstrap/Button'
 
 import { getToken } from '../../../helpers/auth'
 
+// icons
+import { PlusSquare, ChevronLeft } from 'react-feather'
 
 const Trades = () => {
 
@@ -45,39 +48,53 @@ const Trades = () => {
     <div className="trades-list-page">
       <Container className="trades-metrics-container mt-1"></Container>
       <Container className="trades-filter-container mt-2"></Container>
-      <Container className="trades-title-container mt-1">
-        <Row>
-          <Col>status</Col>
-          <Col>open date</Col>
-          <Col>Symbol</Col>
-          <Col>Side</Col>
-          <Col>Return $</Col>
-          <Col>Return %</Col>
-          <Col>Setup</Col>
-        </Row>
-      </Container>
-      <Container className="trades-list-container mt-1">
-        {trades ?
-          trades.map(trade => {
-            const { id, symbol, side, setup } = trade
-            return (
-              <Link key={id} to={`/trades/${id}`}>
-                <Row className="trade-list-row">
-                  <Col>status</Col>
-                  <Col>{trade.date_opened}</Col>
-                  <Col>{symbol}</Col>
-                  <Col>{side}</Col>
-                  <Col>Return $</Col>
-                  <Col>Return %</Col>
-                  <Col>{setup}</Col>
-                </Row>
-              </Link>
-            )
-          })
-          :
-          errors ? <h2>Something went wrong! Please try again later!</h2> : <h2>Loading</h2>
-        }
-      </Container>
+      <div className="trades-title-container mt-1">
+        <div className="trades-page-title-heading">
+          <h3>Trades</h3>
+          <Link className="add-btn" to={'/trades/trade/add'}>
+            <PlusSquare className="add-btn" />
+          </Link>
+        </div>
+      </div>
+      <div className="trades-list-container">
+        <Scrollbar className="scrollbar"  style={{ height: 600 }}>
+          <div className="trades-page-title-heading">
+            <p>status</p>
+            <p>open date</p>
+            <p>Symbol</p>
+            <p>Side</p>
+            <p>Return $</p>
+            <p>Return %</p>
+            <p>Setup</p>
+          </div>
+          {trades ?
+            trades.map(trade => {
+              const { id, symbol, side, setup } = trade
+              
+              return (
+                <Link className="trade-list-link" key={id}  to={`/trades/${id}`}>
+                  <div className="trade-list-row">
+                    {trade.date_closed ?
+                      trade.net_return > 0 ? <p className="status win">Win</p> : <p className="status loss">Loss</p>
+                      :
+                      <p className="status open">Open</p>
+                    }
+                    <div className="trade-list-col">{trade.date_opened}</div>
+                    <div className="trade-list-col">{symbol}</div>
+                    <div className="trade-list-col">{side}</div>
+                    <div className="trade-list-col">$ {trade.net_return}</div>
+                    <div className="trade-list-col">{trade.percent_return} %</div>
+                    <div className="trade-list-col">{setup}</div>
+                  </div>
+                </Link>
+                
+              )
+            })
+            :
+            errors ? <h2>Something went wrong! Please try again later!</h2> : <h2>Loading</h2>
+          }
+        </Scrollbar>
+      </div>
     </div>
   )
 }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import axios from 'axios'
-import { getToken } from '../../../helpers/auth'
+import { getToken, getPayload } from '../../../helpers/auth'
 
 import TradeForm from './TradeForm'
 
@@ -13,7 +13,6 @@ const TradeNew = () => {
   // ! State
   const [ formFields, setFormFields ] = useState({
     date_opened: '',
-    date_closed: '',
     asset_class: '',
     trade_type: '',
     side: '',
@@ -25,10 +24,16 @@ const TradeNew = () => {
     setup: '',
     mistakes: '',
     notes: '',
-    owner_of_trade: '',
+    owner_of_trade: 0,
   })
 
   const [ errors, setErrors ] = useState(null)
+
+  useEffect(() => {
+    const user = getPayload()
+    setFormFields({ ...formFields, owner_of_trade: user.sub })
+  }, [])
+
 
   // ! Execution
   // submit trade to database
@@ -40,11 +45,9 @@ const TradeNew = () => {
           Authorization: `Bearer ${getToken()}`,
         },
       })
-      console.log('SUCCESS', data)
-      console.log('ID', data.id)
       navigate(`/trades/${data.id}`)
     } catch (err) {
-      console.log(err.response.data)
+      console.log(err)
       setErrors(err.response.data)
     }
   }

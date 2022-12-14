@@ -63,6 +63,9 @@ const TradeSingle = () => {
                   </div>
                   <div className="trade-status-box">
                     <h1>Trade Stats</h1>
+                    <Link to={`/trades/${TradeId}/edit`}>
+                      <Button className="edit-btn ">Edit</Button>
+                    </Link>
                     {trade.date_closed ? 
                       trade.net_return > 0 ? <p className="status win">Win</p> : <p className="status loss">Loss</p> 
                       :
@@ -151,20 +154,20 @@ const TradeSingle = () => {
                   <PlusSquare className="add-btn" />
                 </Link>
               </div>
-              <Scrollbar className="scrollbar"  style={{ height: 250 }} >
+              <Scrollbar className="scrollbar"  style={{ height: 200 }} >
                 {executions ? 
-                  executions.map(execution => {
+                  executions.sort((a, b) => a.date > b.date ? -1 : 1).map(execution => {
                     const { id, action, date, time, quantity, price } = execution
                     return (
                       <Link className="execution-link" key={id} to={`/trades/${TradeId}/execution/${id}`}>
                         <div className="execution-box">
                           <div className="execution-box-top">
                             <p>Date: <span>{date}</span></p>
-                            <p>Time: <span>{time}</span></p>
+                            <p>Price: <span>{price}</span></p>
                           </div>
                           <div className="execution-box-bottom">
                             <div className="execution-box-left">
-                              <p>Price: <span>{price}</span></p>
+                              <p>Time: <span>{time}</span></p>
                               <p>Quantity: <span>{quantity}</span></p>
                             </div>
                             {action === 'buy' ? <p className="status win">Buy</p> : <p className="status loss">Sell</p>}

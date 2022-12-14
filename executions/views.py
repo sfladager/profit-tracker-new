@@ -43,22 +43,22 @@ def set_trade_stats(executions, trade):
     dates_sorted = sorted(date_of_execution)
     trade_closed = dates_sorted[-1]
 
-  avg_buy_price = sum(avg_buy_list) / sum(total_buy_quantity)
-  avg_sell_price = sum(avg_sell_list) / sum(total_sell_quantity)
-  total_purchase_cost = sum(avg_buy_list)
-  gross_return = sum(avg_sell_list) - sum(avg_buy_list)
+    avg_buy_price = sum(avg_buy_list) / sum(total_buy_quantity)
+    avg_sell_price = sum(avg_sell_list) / sum(total_sell_quantity)
+    total_purchase_cost = sum(avg_buy_list)
+    gross_return = sum(avg_sell_list) - sum(avg_buy_list)
 
-  data['avg_sell_price'] = avg_sell_price
-  data['avg_buy_price'] = avg_buy_price
-  data['total_cost'] = total_purchase_cost
-  data['gross_return'] = gross_return
-  data['net_return'] = gross_return - sum(total_commission)
-  data['total_commission'] = sum(total_commission)
-  data['percent_return'] = round((((gross_return - sum(total_commission))/ total_purchase_cost) * 100), 2)
-  
-  risk = (avg_buy_price - trade.stoploss) * sum(total_buy_quantity)
-  data['net_R'] = (gross_return - sum(total_commission)) / risk
-  trade.date_closed = trade_closed
+    data['avg_sell_price'] = round(avg_sell_price, 2)
+    data['avg_buy_price'] = round(avg_buy_price, 2)
+    data['total_cost'] = round(total_purchase_cost, 2)
+    data['gross_return'] = round(gross_return, 2)
+    data['net_return'] = round(gross_return - sum(total_commission), 2)
+    data['total_commission'] = sum(total_commission)
+    data['percent_return'] = round((((gross_return - sum(total_commission))/ total_purchase_cost) * 100), 2)
+    
+    risk = (avg_buy_price - trade.stoploss) * sum(total_buy_quantity)
+    data['net_R'] = round(((gross_return - sum(total_commission)) / risk), 2)
+    trade.date_closed = trade_closed
 
 
   return data

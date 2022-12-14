@@ -16,11 +16,13 @@ class PopulatedUserSerializer(UserSerializer):
 
     for trade in data['trades']:
       print('TRADE', trade['date_closed'])
-      total_return.append(trade['net_return'])
-      if trade['net_return'] > 0:
-        win.append(trade['net_return'])
-      if trade['net_return'] < 0:
-        loss.append(trade['net_return'])
+
+      if trade['net_return']:
+        total_return.append(trade['net_return'])
+        if trade['net_return'] > 0:
+          win.append(trade['net_return'])
+        if trade['net_return'] < 0:
+          loss.append(trade['net_return'])
         
 
   

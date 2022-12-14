@@ -23,18 +23,38 @@ const SessionNew = () => {
     session_date: '',
     session_rating: '',
     session_notes: '',
-    owner_of_session: 0,
+    session_trades: [],
+    owner_of_session: getPayload().sub,
   })
-
+  const [ trades, setTrades ] = useState([])
   const [ errors, setErrors ] = useState(null)
 
   // ! Executions
 
-  useEffect(() => {
-    const user = getPayload()
-    setFormFields({ ...formFields, owner_of_session: user.sub })
-  }, [])
+  // useEffect(() => {
+  //   const user = getPayload().sub
+  //   console.log('USER SESSION', user)
+  //   setFormFields({ ...formFields, owner_of_session: user.sub })
+  // }, [])
 
+  //GET trade data to search for trades made during that session.
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const { data } = await axios.get('/api/trades/', {
+          headers: {
+            Authorization: `Bearer ${getToken()}`,
+          },
+        })
+        console.log(data)
+        setTrades(data)
+      } catch (err) {
+        console.log(err)
+        setErrors(err.response.data)
+      }
+    }
+    getData()
+  }, [])
 
   // submit execution to database
   const handleSubmit = async (e) => {
@@ -52,6 +72,21 @@ const SessionNew = () => {
       setErrors(err.response.data)
     }
   }
+  // Select trades were opened on the day of the session
+  useEffect(() => {
+    const sessionTrades = []
+    if (trades) {
+      trades.map(trade => {
+        if (trade.date_opened === formFields.session_date) {
+          console.log('trade match', trade)
+          sessionTrades.push(trade.id)
+        }
+      }
+      )
+    }
+    console.log(sessionTrades)
+    setFormFields({ ...formFields, session_trades: sessionTrades })
+  }, [trades, formFields.session_date])
 
   return (
     <div className="trade-form-page">

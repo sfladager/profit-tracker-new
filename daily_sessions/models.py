@@ -5,11 +5,9 @@ class Session(models.Model):
   session_date = models.DateField()
   session_rating = models.PositiveIntegerField()
   session_notes = models.TextField()
-  session_trades = models.ForeignKey(
+  session_trades = models.ManyToManyField(
     'trades.Trade', 
     related_name='daily_sessions',
-    on_delete=models.PROTECT,
-    default=None, blank=True, null=True
     )
   owner_of_session = models.ForeignKey(
     'jwt_auth.User',

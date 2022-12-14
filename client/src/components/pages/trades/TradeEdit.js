@@ -56,11 +56,11 @@ const TradeEdit = () => {
   }, [])
 
 
-  // submit edit execution to database
+  // submit edit trade to database
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const { data } = await axios.put(`/api/trades/${ExecutionId}/`, formFields, {
+      const { data } = await axios.put(`/api/trades/${TradeId}/`, formFields, {
         headers: {
           Authorization: `Bearer ${getToken()}`,
         },

@@ -1,5 +1,5 @@
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts'
-import { useEffect, useState, useCallback } from 'react'
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts'
+import { useEffect, useState } from 'react'
 
 
 const AccPerfChart = ({ accountData }) => {
@@ -10,40 +10,52 @@ const AccPerfChart = ({ accountData }) => {
   const [errors, setErrors] = useState([])
  
   useEffect(() =>{
+
     setTradeData(accountData.trades)
   }, [accountData])
 
   useEffect(() => {
     const chart = []
-    tradeData.map(trade => {
-      if (trade.date_closed) {
-        chart.push({
-          date: trade.date_closed,
-          profit: trade.net_return,
-        })
-      }
-    })
-    setChartData(chart)
+    if (tradeData) {
+      tradeData.map(trade => {
+        
+        if (trade.date_closed) {
+          chart.push({
+            date: trade.date_closed,
+            profit: trade.net_return,
+          })
+        }
+        setChartData(chart)
+      })
+    }
+    
+
   }, [tradeData])
 
-  return (
+  return ( 
     <>
       {tradeData && chartData ? 
         <>
-          <ResponsiveContainer className="graph-container">
-            <LineChart 
-              width={500} 
-              height={300} 
-              data={chartData} 
-              margin={{ top: 5, right: 20, bottom: 5, left: 0 }}
+          <div className="graph-container">
+            <LineChart
+              className="graph-container"
+              width={350}
+              height={300}
+              data={chartData}
+              // margin={{
+              //   top: 5,
+              //   right: 30,
+              //   left: 20,
+              //   bottom: 5,
+              // }}
             >
-              <Line type="monotone" dataKey="$" stroke="#8884d8" />
-              <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+              <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="date" />
               <YAxis />
               <Tooltip />
+              <Line type="monotone" dataKey="profit" stroke="#8884d8" activeDot={{ r: 8 }} />
             </LineChart>
-          </ResponsiveContainer>
+          </div>
         </>
         :
         errors ? <p>Something went wrong! Try again later</p> : <p>Loading...</p>

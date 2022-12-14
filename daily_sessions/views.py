@@ -4,6 +4,7 @@ from rest_framework import status
 from rest_framework.exceptions import NotFound, PermissionDenied
 
 from .serializers.common import SessionSerializer
+from .serializers.populated import PopulatedSessionSerializer
 from .models import Session
 
 # Authentication
@@ -28,6 +29,7 @@ class SessionView(APIView):
       if session_to_add.is_valid():
         session_to_add.save()
         return Response(session_to_add.data, status.HTTP_201_CREATED)  
+      print(session_to_add.errors)
       return Response(session_to_add.errors, status.HTTP_422_UNPROCESSABLE_ENTITY)
     except Exception as e:
       print(e)
@@ -51,12 +53,12 @@ class SessionDetailView(APIView):
   def get(self, request, pk):
     try:
       session = self.get_session(pk)
-      print("REQUEST SESSION ->", session.owner_of_session)
+      # print("REQUEST SESSION ->", session.owner_of_session)
       # owner = request.data['owner']
-      print("REQUEST DATA ->", request.user)
+      # print("REQUEST DATA ->", request.user)
       if session.owner_of_session != request.user:
         raise PermissionDenied('Unauthorized')
-      serialized_sessions = SessionSerializer(session)
+      serialized_sessions = PopulatedSessionSerializer(session)
       return Response(serialized_sessions.data)
     except Exception as e:
       print(e)
