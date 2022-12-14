@@ -31,12 +31,6 @@ const SessionNew = () => {
 
   // ! Executions
 
-  // useEffect(() => {
-  //   const user = getPayload().sub
-  //   console.log('USER SESSION', user)
-  //   setFormFields({ ...formFields, owner_of_session: user.sub })
-  // }, [])
-
   //GET trade data to search for trades made during that session.
   useEffect(() => {
     const getData = async () => {

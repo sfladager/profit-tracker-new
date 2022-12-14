@@ -23,6 +23,7 @@ const SessionsAll = () => {
   // ! State
   const [ sessionsList, setSessionsList ] = useState([])
   const [ sessionData, setSessionData ] = useState({})
+  const [ dayStats, setDayStats ] = useState({})
 
   const [ errors, setErrors ] = useState(null)
 
@@ -62,6 +63,38 @@ const SessionsAll = () => {
     }
   }
 
+  // Calculates daily session stats from the backend data buidling a new object called stats and saving this to state to use to display in JSX
+  useEffect(() => {
+    if (sessionData.session_trades) {
+      const stats = {
+        trades: '',
+        winners: '',
+        losers: '',
+        winRate: '',
+        return: '',
+      }
+
+      const wins = []
+      const losses = []
+      const profit = []
+      
+      stats.trades = sessionData.session_trades.length
+      
+      sessionData.session_trades.map(trade => {
+        profit.push(trade.net_return)
+        if (trade.net_return > 0) wins.push(trade.id) 
+        if (trade.net_return < 0) losses.push(trade.id)
+      })
+      // Calculations
+      stats.winRate = (wins.length / (wins.length + losses.length)) * 100
+      stats.winners = wins.length
+      stats.losers = losses.length
+      stats.return = profit.length > 0 ? profit.reduce((prev, next) => prev + next, 0) : 0
+
+      setDayStats(stats)
+    }
+  }, [sessionData.session_trades])
+
   return (
     
     <div className="sessions-page-container">
@@ -73,7 +106,7 @@ const SessionsAll = () => {
             <PlusSquare className="add-btn" />
           </Link>
         </div>
-        <Scrollbar>
+        <Scrollbar height={350}>
           {sessionsList ?
             sessionsList.sort((a, b) => a.session_date > b.session_date ? -1 : 1).map(session => {
               return (
@@ -104,15 +137,43 @@ const SessionsAll = () => {
       <div className="session-main-view">
         {sessionData ? 
           <>
-            <div className="sesion-main-heading">
+            <div className="session-main-heading">
               <p>Session Date: <span>{sessionData.session_date}</span></p>
               <p>Session rating: <span>{sessionData.session_rating}</span></p>
               <Link to={`/sessions/${sessionData.id}/edit`}>
                 <Button className="edit-btn">Edit</Button>
               </Link>
             </div>
-            <div className="sesion-stats">
-              <p>SESSION STATS GO HERE</p>
+            <div className="session-stats">
+              <h3>Session Stats</h3>
+              {sessionData.session_trades && dayStats ?
+                <div className="session-stats-box">
+                  <div className="daily-stats">
+                    <p>Trades</p>
+                    <p>{dayStats.trades}</p>
+                  </div>
+                  <div className="daily-stats">
+                    <p>Winners</p>
+                    <p>{dayStats.winners}</p>
+                  </div>
+                  <div className="daily-stats">
+                    <p>Losers</p>
+                    <p>{dayStats.losers}</p>
+                  </div>
+                  <div className="daily-stats">
+                    <p>Win rate</p>
+                    <p>{dayStats.winRate}%</p>
+                  </div>
+                  <div className="daily-stats">
+                    <p>Daily Return</p>
+                    <p>${dayStats.return}</p>
+                  </div>
+                </div>
+                :
+                <p>Loading...</p>
+              }
+                
+
             </div>
             <div className="session-main-body">
               <p className="session-notes-title">Notes:</p>
