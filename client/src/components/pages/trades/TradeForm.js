@@ -19,7 +19,7 @@ const TradeForm = ({ handleSubmit, formFields, setFormFields, errors, setErrors,
 
   // ! State
   const [ tradeModel, setTradeModel ] = useState([])
-  const [ formModel, setFormModel ] = useState([])
+  const [ formModel, setFormOptions ] = useState([])
 
 
   // ! Executions
@@ -31,7 +31,7 @@ const TradeForm = ({ handleSubmit, formFields, setFormFields, errors, setErrors,
     setErrors({ ...errors, [e.target.name]: '', message: '' })
   }
 
-  // Get data from blogs to populate categories ang tags dropdowns
+  // Get data from trades to populate categories ang tags dropdowns
   useEffect(() => {
     const getData = async () => {
       try {
@@ -54,7 +54,7 @@ const TradeForm = ({ handleSubmit, formFields, setFormFields, errors, setErrors,
           },
         })
         console.log(data)
-        setFormModel(data)
+        setFormOptions(data)
       } catch (err) {
         console.log(err)
       }

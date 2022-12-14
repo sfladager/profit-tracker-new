@@ -9,6 +9,7 @@ from trades.models import Trade
 from trades.serializers.populated import PopulatedTradeSerializer
 
 from rest_framework.permissions import IsAuthenticated
+import datetime
 
 def set_trade_stats(executions, trade):
   serialized_executions = ExecutionSerializer(executions, many=True)
@@ -19,9 +20,12 @@ def set_trade_stats(executions, trade):
   total_buy_quantity = []
   total_sell_quantity = []
   total_commission = []
+  date_of_execution = []
+  trade_closed = ''
 
   for execution in serialized_executions.data:
     total_commission.append(execution['commissions'])
+    date_of_execution.append(execution['date'])
     if execution['action'] == 'buy':
       quantity = float(execution['quantity'])
       price = execution['price']
@@ -34,6 +38,10 @@ def set_trade_stats(executions, trade):
       total_cost = quantity * price
       avg_sell_list.append(total_cost)
       total_sell_quantity.append(quantity)
+
+  if sum(total_buy_quantity) == sum(total_sell_quantity):
+    dates_sorted = sorted(date_of_execution)
+    trade_closed = dates_sorted[-1]
 
   avg_buy_price = sum(avg_buy_list) / sum(total_buy_quantity)
   avg_sell_price = sum(avg_sell_list) / sum(total_sell_quantity)
@@ -50,6 +58,7 @@ def set_trade_stats(executions, trade):
   
   risk = (avg_buy_price - trade.stoploss) * sum(total_buy_quantity)
   data['net_R'] = (gross_return - sum(total_commission)) / risk
+  trade.date_closed = trade_closed
 
 
   return data

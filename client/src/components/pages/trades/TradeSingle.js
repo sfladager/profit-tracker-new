@@ -4,6 +4,7 @@ import axios from 'axios'
 
 import { getToken } from '../../../helpers/auth'
 import { Scrollbar } from 'react-scrollbars-custom'
+import ChartWidget from '../../charts/ChartWidget'
 
 // Bootstrap imports
 import Container from 'react-bootstrap/Container'
@@ -183,7 +184,9 @@ const TradeSingle = () => {
             {trade ? 
               <>
                 <div className="trade-chart">
-                  <h1>TRADE CHART GOES HERE</h1>
+                  <ChartWidget
+                    trade={trade}
+                  />
                 </div>
                 <div className="trade-info-small">
                   <h3>Mistakes:</h3>

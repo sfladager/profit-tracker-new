@@ -5,12 +5,6 @@ import { getToken } from '../../../helpers/auth'
 
 import TradeForm from './TradeForm'
 
-// Bootstrap
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import Button from 'react-bootstrap/Button'
-
 const TradeNew = () => {
 
   // ! Navigation
@@ -48,7 +42,7 @@ const TradeNew = () => {
       })
       console.log('SUCCESS', data)
       console.log('ID', data.id)
-      // navigate(`/trades/${data.id}`)
+      navigate(`/trades/${data.id}`)
     } catch (err) {
       console.log(err.response.data)
       setErrors(err.response.data)

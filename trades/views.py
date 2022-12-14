@@ -30,7 +30,7 @@ class TradeListView(APIView):
   # POST add Trade controller
   # Description: adds a trade to the user trades
   def post(self, request):
-    print('REQUEST POST ', request.data)
+    # print('REQUEST POST ', request.data)
     trade_to_add = TradeSerializer(data=request.data)
     try:
       if trade_to_add.is_valid():
@@ -61,7 +61,7 @@ class TradeDetailView(APIView):
     trade = self.get_trade(pk)
     if trade.owner_of_trade != request.user:
       raise PermissionDenied('Unauthorized')
-    serialized_trade = TradeSerializer(trade)
+    serialized_trade = PopulatedTradeSerializer(trade)
     # trade_with_stats = serialized_trade.set_trade_stats()
     return Response(serialized_trade.data)
   
@@ -92,12 +92,15 @@ class TradeDetailView(APIView):
 # Endpoint: /trades/form
 class TradeFormView(APIView):
   permission_classes = (IsAuthenticated, )
-  renderer_classes = [TemplateHTMLRenderer]
-  template_name = 'rest_framework/vertical/form.html'
+  # renderer_classes = [TemplateHTMLRenderer]
+  # template_name = 'rest_framework/vertical/form.html'
 
   def get(self, _request):
-    form = TradeForm()
-    print(form.fields)
-    serialized_form = TradeFormSerializer(form.fields)
-    print(serialized_form.data)
-    return Response(form.fields)
+    
+    fields = Trade._meta.fields
+    fields_with_choices = [{'name': field.name, 'choices': field.choices} for field in fields if field.choices]
+    print(fields_with_choices)
+      # print(field.name, field.choices)
+    # serialized_form = TradeFormSerializer(form.fields)
+    # print(serialized_form.data)
+    return Response(fields_with_choices)

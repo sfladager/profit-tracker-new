@@ -167,8 +167,6 @@ a {
   }
 }
 
-
-
 // Login & Register page
 .auth-form-row {
   display: flex;
@@ -207,6 +205,18 @@ a {
     margin-left: 7px;
     color: $blue;
   }
+}
+
+// ! Dashboard 
+// .account-info-stats-container {
+
+// }
+.main-stats-container {
+  display: flex;
+  justify-content: space-between;
+}
+.graph-container {
+  width: 100%;
 }
 
 // Trade list page
@@ -316,7 +326,10 @@ a {
     font-weight: bold;
   }
 }
-
+// Chart on Trade Single page
+#tradingview_38969 {
+  height: 300px;
+}
 // Sessions
 .sessions-page-container {
   display: flex;
@@ -419,6 +432,10 @@ a {
     width: 100%;
     margin: 0 5px;
   }
+}
+// Chart on Trade Single page
+#tradingview_38969 {
+  height: 500px;
 }
 
 // Sessions page

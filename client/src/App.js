@@ -12,6 +12,7 @@ import Dashboard from './components/pages/Dashboard'
 import Trades from './components/pages/trades/Trades'
 import TradeNew from './components/pages/trades/TradeNew'
 import TradeSingle from './components/pages/trades/TradeSingle'
+import TradeEdit from './components/pages/trades/TradeEdit'
 import ExecutionNew from './components/pages/trades/ExecutionNew'
 import ExecutionEdit from './components/pages/trades/ExecutionEdit'
 import SessionsAll from './components/pages/sessions/SessionsAll'
@@ -35,6 +36,7 @@ const App = () => {
           <Route path="/trades" element={<Trades />} />
           <Route path="/trades/trade/add" element={<TradeNew />} />
           <Route path="/trades/:TradeId" element={<TradeSingle />} />
+          <Route path="/trades/:TradeId/edit" element={<TradeEdit />} />
           <Route path="/trades/:TradeId/execution/add" element={<ExecutionNew />} />
           <Route path="/trades/:TradeId/execution/:ExecutionId" element={<ExecutionEdit/>} />
           <Route path="/sessions" element={<SessionsAll />} />
