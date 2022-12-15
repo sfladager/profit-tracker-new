@@ -169,7 +169,7 @@ const TradeForm = ({ handleSubmit, formFields, setFormFields, errors, setErrors,
               placeholder="Ex. Dip buy"
             />
             {/* Mistakes */}
-            <label htmlFor="mistakes">mistakes</label>
+            <label htmlFor="mistakes">Mistakes</label>
             <input
               type="text"
               name="mistakes"
@@ -179,7 +179,7 @@ const TradeForm = ({ handleSubmit, formFields, setFormFields, errors, setErrors,
               placeholder="Ex. Didn't follow plan"
             />
             {/* Notes */}
-            <label htmlFor="symbol">Symbol</label>
+            <label htmlFor="notes">Notes</label>
             <textarea 
               name="notes"
               className="trade-form-input"

@@ -24,7 +24,7 @@ const Register = () => {
     trades: [],
   })
 
-  const [ error, setError ] = useState('')
+  const [ errors, setErrors ] = useState('')
 
 
   // ! Executions
@@ -37,8 +37,8 @@ const Register = () => {
       console.log('Registration successful')
       navigate('/dashboard')
     } catch (err) {
-      console.log(err.response.data.message)
-      setError(err.response.data.message)
+      console.log(err.message)
+      setError(err.message)
     }
   }
 
@@ -52,7 +52,7 @@ const Register = () => {
     setFormFields(updatedFormFields)
 
     // Sets errors back to empty string 
-    if (error) setError('')
+    if (errors) setErrors('')
   }
 
 
@@ -105,7 +105,7 @@ const Register = () => {
                 required
               />
               {/* Error Message */}
-              {error && <small className='text-danger'>{error}</small>}
+              {errors && <small className='text-danger'>{errors}</small>}
               {/* Submit */}
               <Button type="submit" className='button-blue'>Create account</Button>
             </form>

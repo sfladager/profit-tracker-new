@@ -19,10 +19,7 @@ const Profile = () => {
 
   // ! State
   // errors from axios request
-  const [errors, setErrors] = useState(false)
-
-  //error to displat data on page
-  const [ error, setError ] = useState('')
+  const [errors, setErrors] = useState(null)
 
   // Form fields to update
   const [ formFields, setFormFields ] = useState({
@@ -39,15 +36,15 @@ const Profile = () => {
   useEffect(() => {
     const getProfile = async () => {
       try {
-        const { data } = await axios.get('/api/auth/profile/', {
+        const { data } = await axios.get('/api/auth/profile/edit/', {
           headers: {
             Authorization: `Bearer ${getToken()}`,
           },
         })
         setFormFields(data)
       } catch (err) {
-        console.log(err)
-        setErrors(true)
+        console.log(err.message)
+        setErrors(err.message)
       }
     }
     getProfile()
@@ -56,7 +53,6 @@ const Profile = () => {
   // ! Executions
   // updates state when a form field is updated
   const handleChange = (e) => {
-    console.log(formFields)
     setFormFields({ ...formFields, [e.target.name]: e.target.value })
   }
 
@@ -69,11 +65,11 @@ const Profile = () => {
           Authorization: `Bearer ${getToken()}`,
         },
       })
-      console.log('DATA AFTER PUT ->', data)
       setFormFields(data)
       navigate('/dashboard')
     } catch (err) {
-      setError(err.response.data.message)
+      console.log(err.message)
+      setErrors(err.message)
     }
   }
 
@@ -82,7 +78,7 @@ const Profile = () => {
       <Container className="mt-4">
         {formFields ?
           <>
-            <Row className="auth-form-row">
+            <Row className="auth-form-row mb-2">
               <Col lg={4}></Col>
               <Col className="auth-form" sm={10} lg={4}>
                 <form className="auth-form" onSubmit={handleSubmit}>
@@ -130,43 +126,34 @@ const Profile = () => {
                     placeholder="Last name"
                   />
                   {/* Password */}
-                  <label htmlFor="password">Password</label>
+                  {/* <label htmlFor="password">Password</label>
                   <input 
                     type="password" 
                     name="password" 
                     onChange={handleChange} 
                     value={formFields.password}
                     placeholder="Password" 
-                    required
-                  />
+                  /> */}
                   {/* Password */}
-                  <label htmlFor="password_confirmation">Password confirmation</label>
+                  {/* <label htmlFor="password_confirmation">Password confirmation</label>
                   <input 
-                    type="password_confirmation" 
+                    type="password" 
                     name="password_confirmation" 
                     onChange={handleChange} 
                     value={formFields.password_confirmation}
                     placeholder="Password confirmation" 
-                    required
-                  />
+                  /> */}
                   {/* Error Message */}
-                  {error && <small className='text-danger'>{error}</small>}
+                  {errors && <small className='text-danger'>{errors}</small>}
                   {/* Submit */}
-                  <Button type="submit" className='button-blue'>Save</Button>
+                  <Button type="submit" className='button-blue mb-2'>Save</Button>
                 </form>
               </Col>
               <Col lg={4}></Col>
             </Row>
-            {/* <footer className="auth-footer">
-              <p>Need to create an account?
-                <Link type="submit" to="/register"><span className="sign-in">Sign up</span></Link>
-              </p>
-            </footer> */}
           </>
           :
-          <>
-            errors ? <h2>Something went wrong! Please try again later!</h2> : <h2>Loading</h2>
-          </>
+          errors ? <h2>{errors}</h2> : <h2>Loading</h2>
         }
       </Container>
     </main >

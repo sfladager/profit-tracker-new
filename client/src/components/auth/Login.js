@@ -25,11 +25,10 @@ const Login = () => {
     password: '',
   })
 
-  const [ error, setError ] = useState('')
+  const [ errors, setErrors ] = useState('')
 
   // ! Executions
   const handleChange = (e) => {
-    console.log(formFields)
     setFormFields({ ...formFields, [e.target.name]: e.target.value })
   }
 
@@ -37,11 +36,10 @@ const Login = () => {
     e.preventDefault()
     try {
       const { data } = await axios.post('/api/auth/login/', formFields)
-      console.log(data.token)
       setToken(data.token)
       navigate('/dashboard')
     } catch (err) {
-      setError(err.response.data.message)
+      setError(err.message)
     }
   }
 
@@ -75,7 +73,7 @@ const Login = () => {
                 required
               />
               {/* Error Message */}
-              {error && <small className='text-danger'>{error}</small>}
+              {errors && <small className='text-danger'>{errors}</small>}
               {/* Submit */}
               <Button type="submit" className='button-blue'>Sign In</Button>
             </form>

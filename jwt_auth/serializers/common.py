@@ -11,7 +11,7 @@ class UserSerializer(serializers.ModelSerializer):
 
   #Validate method
   def validate(self, data):
-    print('DATA ->', data)
+    # print('DATA ->', data)
 
     # Remove pw and pw_conf from JSON
     password = data.pop('password')

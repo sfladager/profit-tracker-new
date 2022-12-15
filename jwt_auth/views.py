@@ -6,6 +6,7 @@ from django.contrib.auth import get_user_model
 
 from .serializers.common import UserSerializer
 from .serializers.populated import PopulatedUserSerializer
+from .serializers.profile import ProfileSerializer
 
 #Authentication
 from rest_framework.permissions import IsAuthenticated
@@ -76,13 +77,22 @@ class ProfileView(APIView):
 
   #edit user profile
   def put(self, request):
-
     user = User.objects.get(pk=request.user.id)
-    print('EDIT USER DATA', user)
+
     if user != request.user:
       raise PermissionDenied('Unauthorized')
-    user_to_update = UserSerializer(user, request.data, partial=True)
+    user_to_update = ProfileSerializer(user, request.data, partial=True)
     if user_to_update.is_valid():
       user_to_update.save()
       return Response(user_to_update.data, status.HTTP_202_ACCEPTED)
+    print(user_to_update.errors)
     return Response(user_to_update.errors, status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+# Endpoint: /profile/edit
+class ProfileEditView(APIView):
+  permission_classes = (IsAuthenticated, )
+  # GET user data only, no trades
+  def get(self, request):
+    profile_to_get = User.objects.get(pk=request.user.id)
+    serialized_profile = UserSerializer(profile_to_get)
+    return Response (serialized_profile.data)
