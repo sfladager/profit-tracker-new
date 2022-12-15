@@ -1,20 +1,12 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
+import { getToken } from '../../helpers/auth'
+import OpenTrades from '../../helpers/OpenTrades'
 import AccPerfChart from '../charts/AccPerfChart'
 
 // Bootstrap imports
 import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-
-import { Filter } from 'react-feather'
-
-import { getToken } from '../../helpers/auth'
-
-
-
-
 
 const Dashboard = () => {
 
@@ -35,6 +27,7 @@ const Dashboard = () => {
         setAccountData(data)
       } catch (err) {
         console.log(err)
+        setErrors(err)
       }
     }
     getData()
@@ -45,10 +38,9 @@ const Dashboard = () => {
       <div className="account-info-container mt-4">
         <div className="title-box">
           <p>Account Performance</p>
-          <Filter />
         </div>
         <div className="account-info-stats-container">
-          <div className="main-stats-container">
+          <div className="main-stats-container mt-2">
             {accountData ? 
               <>
                 <div className="single-stat">
@@ -81,10 +73,11 @@ const Dashboard = () => {
               </div>
             </>
             :
-            errors ? <p>Something went wrong!</p> : <p>Loading...</p>
+            errors ? <p>{errors}</p> : <p>Loading...</p>
           }
         </div>
       </div>
+      <OpenTrades />
     </Container>
   )
 }

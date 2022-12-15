@@ -37,8 +37,8 @@ const TradeSingle = () => {
         setExecutions(data.executions)
         setTrade(data)
       } catch (err) {
-        console.log(err)
-        setErrors(err.response.data)
+        console.log(err.response.data['detail'])
+        setErrors(err.response.data['detail'])
       }
     }
     getData()
@@ -147,7 +147,7 @@ const TradeSingle = () => {
                 </div>
               </>
               :
-              errors ? <p>Something went wrong! Try again later</p> : <p>Loading...</p>
+              errors ? <p>{errors}</p> : <p>Loading...</p>
             }
             <div className="execution-list">
               <div className="execution-title-box">
@@ -180,7 +180,7 @@ const TradeSingle = () => {
                     )
                   })
                   :
-                  errors ? <p>Something went wrong! Try again later</p> : <p>Loading...</p>
+                  errors ? <p>{errors}</p> : <p>Loading...</p>
                 }
               </Scrollbar>
             </div>
@@ -207,7 +207,7 @@ const TradeSingle = () => {
                 </div>
               </>
               :
-              errors ? <p>Something went wrong! Try again later</p> : <p>Loading...</p>
+              errors ? <p>Failed to load. {errors}</p> : <p>Loading...</p>
             }
           </div>
         </div>

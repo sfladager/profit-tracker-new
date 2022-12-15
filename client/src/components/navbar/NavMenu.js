@@ -43,7 +43,7 @@ const NavMenu = () => {
                   <Link to="/profile">
                     <User className="icons" />
                   </Link>
-                  <Link className='icons' onClick={() => handleLogout(navigate)}>
+                  <Link className='icons' onClick={() => handleLogout(navigate('/'))}>
                     <LogOut className="icons nav-auth-buttons" />
                   </Link>
                 </>

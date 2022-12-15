@@ -32,12 +32,6 @@ const AccPerfChart = ({ accountData }) => {
     setChartData(chart)
   }, [tradeData])
 
-  // useEffect(() => {
-  //   window.addEventListener('resize', () => {
-  //     console.log(window.innerWidth)
-  //   })
-  // })
-
   useEffect(() => {
     const value = []
     if (accountData.account_value) {
@@ -56,22 +50,7 @@ const AccPerfChart = ({ accountData }) => {
     <>
       {tradeData && chartData ? 
         <>
-          <div className="graph-container">
-            <ResponsiveContainer width="100%" height="100%">
-              <LineChart
-                className="graph-container"
-                width={window.innerWidth}
-                height={250}
-                data={chartData}
-              >
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="date" />
-                <YAxis />
-                <Tooltip />
-                <Line type="monotone" dataKey="profit" stroke="#8884d8" activeDot={{ r: 8 }} />
-              </LineChart>
-            </ResponsiveContainer>
-          </div>
+          <div className="graph-title"><p>Account Value Evolution</p></div>
           <div className="graph-container">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart

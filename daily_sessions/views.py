@@ -14,8 +14,8 @@ from rest_framework.permissions import IsAuthenticated
 class SessionView(APIView):
   permission_classes = (IsAuthenticated, )
   # GET all sessions
-  def get(self, _request):
-    sessions = Session.objects.all()
+  def get(self, request):
+    sessions = Session.objects.filter(owner_of_session=request.user.id)
     serialized_sessions = SessionSerializer(sessions, many=True)
     return Response(serialized_sessions.data)
   

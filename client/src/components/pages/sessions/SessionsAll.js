@@ -167,7 +167,7 @@ const SessionsAll = () => {
                   </div>
                 </div>
                 :
-                <p>Loading...</p>
+                <p>Click a session to get session info.</p>
               }
                 
 

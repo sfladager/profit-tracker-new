@@ -11,9 +11,6 @@ from .serializers.populated import PopulatedTradeSerializer
 from .forms.form import TradeForm
 from .serializers.form_serializer import TradeFormSerializer
 
-from rest_framework.renderers import TemplateHTMLRenderer
-
-
 # Authentication
 from rest_framework.permissions import IsAuthenticated
 
@@ -22,8 +19,8 @@ class TradeListView(APIView):
   permission_classes = (IsAuthenticated, )
   # GET all trades controller
   # Description: returns all trades found back to user
-  def get(self, _request):
-    trades = Trade.objects.all()
+  def get(self, request):
+    trades = Trade.objects.filter(owner_of_trade=request.user.id)
     serialized_trades = TradeSerializer(trades, many=True)
     return Response(serialized_trades.data)
   

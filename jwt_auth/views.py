@@ -65,6 +65,7 @@ class LoginView(APIView):
       'message': f'Welcome back, {user_to_login.username}'
     }, status.HTTP_202_ACCEPTED)
 
+#Endpoint /auth/profile/
 class ProfileView(APIView):
   permission_classes = (IsAuthenticated, )
   # GET all trade data that the user owns
@@ -88,7 +89,7 @@ class ProfileView(APIView):
     print(user_to_update.errors)
     return Response(user_to_update.errors, status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-# Endpoint: /profile/edit
+# Endpoint: auth/profile/edit
 class ProfileEditView(APIView):
   permission_classes = (IsAuthenticated, )
   # GET user data only, no trades

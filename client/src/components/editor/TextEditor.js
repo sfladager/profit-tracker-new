@@ -31,7 +31,7 @@ const TextEditor = ({ formFields, setFormFields }) => {
 
   useEffect(() => {
     loadNotes()
-  }, [formFields.owner_of_session ])
+  }, [formFields.session_trades])
 
   return (
     <Editor

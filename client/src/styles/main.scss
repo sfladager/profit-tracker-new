@@ -148,6 +148,23 @@ a {
 }
 
 // ! Dashboard 
+.trades-filter-container {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+  background-color: $primary;
+  select, input {
+    margin-left: 10px;
+    border: none;
+    background-color: $primary;
+    border-bottom: 1px solid darken($blue, 15%);
+    color: #fff;
+  }
+  ::placeholder {
+    color: #fff;
+    padding-left: 5px;
+  }
+}
 .account-info-container {
   .title-box {
     display: flex;
@@ -156,11 +173,13 @@ a {
     background-color: $primary;
     align-items: center;
     padding: 8px 12px;
+    font-size: 105%
   }
 }
 .main-stats-container {
   display: flex;
   justify-content: space-between;
+  border-bottom: 1px solid rgba(10, 10, 10, 0.2);
   p {
     text-align: center;
   }
@@ -168,11 +187,31 @@ a {
     font-weight: bold;
   }
 }
+.graph-title {
+  background-color: $primary;
+  color: #fff;
+  margin-top: 10px;
+  padding: 8px 12px;
+  font-size: 105%
+}
 .graph-container {
   display: flex;
   height: 250px;
   // width: 100% !important;
-  margin: 10px 0;
+  margin: 5px 5px 10px 0px;
+  background-color: rgba(10, 10, 10, 0.2);
+}
+.open-trades-title-heading {
+  background-color: $primary;
+  color: #fff;
+  font-size: 105%;
+  padding: 8px 2px;
+}
+.open-trades-title-heading, .open-trades-row {
+  display: grid;
+  grid-template-columns: 1.3fr .7fr .6fr 1.4fr;
+  justify-items: center;
+  border-bottom: 1px solid rgba(10, 10, 10, 0.2);
 }
 
 // Dropzone image
@@ -268,8 +307,11 @@ a {
     display: flex;
     align-items: flex-start;
     text-align: center;
-    font-size: 0.8rem;
+    font-size: 90%;
     padding: 5px;
+  }
+  .setup {
+    font-size: 80%
   }
 }
 .trades-list-container {
