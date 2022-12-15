@@ -5,6 +5,7 @@ import axios from 'axios'
 import { getToken } from '../../../helpers/auth'
 import { Scrollbar } from 'react-scrollbars-custom'
 import ChartWidget from '../../charts/ChartWidget'
+import TickerInfo from '../../../helpers/TickerInfo'
 
 // Bootstrap imports
 import Container from 'react-bootstrap/Container'
@@ -57,8 +58,9 @@ const TradeSingle = () => {
               <>
                 <div className="trade-heading-box">
                   <div className="trade-heading-box-top">
-                    <h3>Company</h3>
-                    <p>Price</p>
+                    <TickerInfo
+                      trade={trade}
+                    />
                     <p className="symbol">{trade.symbol}</p>
                   </div>
                   <div className="trade-status-box">
@@ -100,11 +102,11 @@ const TradeSingle = () => {
                   </div>
                   <div className="single-stat">
                     <p>Target:</p>
-                    <p>{trade.target}</p>
+                    <p>${trade.target}</p>
                   </div>
                   <div className="single-stat">
                     <p>Stoploss:</p>
-                    <p>{trade.stoploss}</p>
+                    <p>${trade.stoploss}</p>
                   </div>
                   <div className="single-stat">
                     <p>expected R:</p>
@@ -112,23 +114,23 @@ const TradeSingle = () => {
                   </div>
                   <div className="single-stat">
                     <p>Avg buy price:</p>
-                    <p>{trade.avg_buy_price}</p>
+                    <p>${trade.avg_buy_price}</p>
                   </div>
                   <div className="single-stat">
                     <p>Avg sell price:</p>
-                    <p>{trade.avg_sell_price}</p>
+                    <p>${trade.avg_sell_price}</p>
                   </div>
                   <div className="single-stat">
                     <p>Total cost:</p>
-                    <p>{trade.total_cost}</p>
+                    <p>${trade.total_cost}</p>
                   </div>
                   <div className="single-stat">
                     <p>Gross return:</p>
-                    <p>{trade.gross_return}</p>
+                    <p>${trade.gross_return}</p>
                   </div>
                   <div className="single-stat">
                     <p>Net return:</p>
-                    <p>{trade.net_return}</p>
+                    <p>${trade.net_return}</p>
                   </div>
                   <div className="single-stat">
                     <p>Return %:</p>
@@ -140,7 +142,7 @@ const TradeSingle = () => {
                   </div>
                   <div className="single-stat">
                     <p>Total commisions:</p>
-                    <p>{trade.total_commission}</p>
+                    <p>${trade.total_commission}</p>
                   </div>
                 </div>
               </>

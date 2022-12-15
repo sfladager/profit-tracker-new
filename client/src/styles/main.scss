@@ -15,8 +15,6 @@ $green: #00C800;
 
 // COMMON
 .site-wrapper {
-  // display: flex;
-  // flex-direction: column;
   min-height: 100vh;
 }
 
@@ -92,15 +90,12 @@ a {
   }
 }
 .add-btn {
-  // background-color: $blue;
   border-radius: 5px;
-  // padding: 2px 0;
   height: 28px;
   width: 28px;
   margin: 2px 5px 2px 0;
   color: $blue;
   &:hover {
-    // background-color: darken($blue, 5%);
     transition: width 0.5s, height 0.5s;
     height: 30px;
     width: 30px;
@@ -114,8 +109,7 @@ a {
   }
 }
 
-
-// Navbar
+// ! Navbar
 .navbar {
   background: $primary;
   color: #fff;
@@ -128,8 +122,6 @@ a {
   .nav-links-container {
     display: flex;
     width: 100%;
-    // justify-content: flex-start;
-    // align-items: flex-start;
   }
   .nav-links {
     display: flex;
@@ -138,6 +130,21 @@ a {
   .nav-auth-buttons {
     margin-left: 5px;
   }
+}
+// ! Home Page
+.home-page {
+  background-image: url(../assets/home2.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 100vh;
+  .hero-container {
+    color: #fff;
+  }
+  .hero-title, .hero-btn {
+    padding-top: 30px;
+  }
+
 }
 
 // ! Dashboard 
@@ -231,14 +238,23 @@ a {
 }
 
 // ! Trade list page
-
-.trades-page-title-heading, .trade-list-row  {
+.trades-page-title-box {
   display: flex;
   justify-content: space-between;
   align-items: center;
   color: #fff;
   background-color: $primary;
-  padding: 5px 10px;
+  padding: 5px 15px;
+}
+.trades-page-title-heading, .trade-list-row  {
+  display: grid;
+  grid-template-columns: repeat(7, [col] auto );
+  grid-gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  background-color: $primary;
+  padding: 5px 15px;
   h3 {
     margin: 0;
   }
@@ -333,6 +349,11 @@ a {
   }
   .trade-stats-box {
     margin: 10px 0;
+  }
+  .trade-heading-box-top {
+    h3 {
+      font-size: 1.3rem;
+    }
   }
   .trade-heading-box-top, .trade-status-box, .single-stat, .execution-title-box, .execution-box, .trade-info-small   {
     display: flex;
@@ -440,7 +461,8 @@ a {
       margin: 0;
       border-bottom: 1px solid rgba(10, 10, 10, 0.2);
       &:hover {
-        background-color: $blue;
+        background-color: rgba(10, 10, 10, 0.1);
+        cursor: pointer;
       }
     }
     .rating-p {

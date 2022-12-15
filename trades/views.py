@@ -62,7 +62,6 @@ class TradeDetailView(APIView):
     if trade.owner_of_trade != request.user:
       raise PermissionDenied('Unauthorized')
     serialized_trade = PopulatedTradeSerializer(trade)
-    # trade_with_stats = serialized_trade.set_trade_stats()
     return Response(serialized_trade.data)
   
   # Put edit Trade controller
@@ -92,8 +91,6 @@ class TradeDetailView(APIView):
 # Endpoint: /trades/form
 class TradeFormView(APIView):
   permission_classes = (IsAuthenticated, )
-  # renderer_classes = [TemplateHTMLRenderer]
-  # template_name = 'rest_framework/vertical/form.html'
 
   def get(self, _request):
     

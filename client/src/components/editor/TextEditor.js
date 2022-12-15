@@ -17,9 +17,10 @@ const TextEditor = ({ formFields, setFormFields }) => {
     setFormFields({ ...formFields, session_notes: draftToHtml(convertToRaw(editorState.getCurrentContent())) })
   }
 
-  // code to convert html saved in article to draft to load into editor if article data is present
+  // code to convert html saved in notes to draft to load into editor if notes data is present
   const loadNotes = () => {
     if (formFields.session_notes) {
+      console.log(formFields.session_notes)
       const blocksFromHtml = htmlToDraft(formFields.session_notes)
       const { contentBlocks, entityMap } = blocksFromHtml
       const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap)
@@ -30,7 +31,7 @@ const TextEditor = ({ formFields, setFormFields }) => {
 
   useEffect(() => {
     loadNotes()
-  }, [formFields.owner_of_session])
+  }, [formFields.owner_of_session ])
 
   return (
     <Editor

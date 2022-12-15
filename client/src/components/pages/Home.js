@@ -7,7 +7,6 @@ import Container from 'react-bootstrap/Container'
 import Button from 'react-bootstrap/Button'
 
 
-
 const Home = () => {
 
 
@@ -15,11 +14,14 @@ const Home = () => {
   return (
     <div className="home-page">
       <Container className="hero-container">
-        <h1>Your Online Trading Journal</h1>
-        <h4>Journal - Learn - Trade Smarter</h4>
-        <div className="hero-btn">
-          <Button className="button-blue" variant="primary">Sign Up</Button>
+        <div className="hero-title">
+          <h1>Your Online Trading Journal</h1>
+          <h4>Journal - Learn - Trade Smarter</h4>
+          <div className="hero-btn">
+            <Button className="button-blue" variant="primary">Sign Up</Button>
+          </div>
         </div>
+        
       </Container>
     </div>  
   )

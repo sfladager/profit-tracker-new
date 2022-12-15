@@ -49,7 +49,7 @@ const Trades = () => {
       <Container className="trades-metrics-container mt-1"></Container>
       <Container className="trades-filter-container mt-2"></Container>
       <div className="trades-title-container mt-1">
-        <div className="trades-page-title-heading">
+        <div className="trades-page-title-box">
           <h3>Trades</h3>
           <Link className="add-btn" to={'/trades/trade/add'}>
             <PlusSquare className="add-btn" />

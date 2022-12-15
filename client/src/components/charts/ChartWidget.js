@@ -4,7 +4,6 @@ import { useEffect } from 'react'
 const ChartWidget = ({ trade }) => {
 
   useEffect(() => {
-    console.log('trade!!!', toString(trade.timeframe))
     new TradingView.widget(
       {
         'autosize': true,

@@ -36,7 +36,6 @@ const SessionsAll = () => {
             Authorization: `Bearer ${getToken()}`,
           },
         })
-        console.log(data)
         setSessionsList(data)
       } catch (err) {
         console.log(err)
@@ -55,7 +54,6 @@ const SessionsAll = () => {
           Authorization: `Bearer ${getToken()}`,
         },
       })
-      console.log('SUCCESS', data)
       setSessionData(data)
     } catch (err) {
       console.log(err.response.data)
@@ -86,7 +84,7 @@ const SessionsAll = () => {
         if (trade.net_return < 0) losses.push(trade.id)
       })
       // Calculations
-      stats.winRate = (wins.length / (wins.length + losses.length)) * 100
+      stats.winRate = Math.round((wins.length / (wins.length + losses.length)) * 100)
       stats.winners = wins.length
       stats.losers = losses.length
       stats.return = profit.length > 0 ? profit.reduce((prev, next) => prev + next, 0) : 0
@@ -126,7 +124,6 @@ const SessionsAll = () => {
                   }
                   
                 </div>
-
               )
             })
             :
