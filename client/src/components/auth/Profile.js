@@ -82,7 +82,7 @@ const Profile = () => {
               <Col lg={4}></Col>
               <Col className="auth-form" sm={10} lg={4}>
                 <form className="auth-form" onSubmit={handleSubmit}>
-                  <h1 className="auth-form-title">{formFields.username}</h1>
+                  <h1 className="auth-form-title">Welcome {formFields.username}</h1>
                   {/* Profile Image */}
                   <ImageUpload
                     formFields={formFields}

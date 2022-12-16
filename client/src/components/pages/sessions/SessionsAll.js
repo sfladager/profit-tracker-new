@@ -174,7 +174,7 @@ const SessionsAll = () => {
             </div>
             <div className="session-main-body">
               <p className="session-notes-title">Notes:</p>
-              <p>{sessionData.session_notes && parse(sessionData.session_notes) }</p>
+              <p className="session-notes">{sessionData.session_notes && parse(sessionData.session_notes) }</p>
             </div>
           </>
           :

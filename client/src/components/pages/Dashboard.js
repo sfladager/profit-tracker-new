@@ -18,6 +18,7 @@ const Dashboard = () => {
   // ! Executions
   useEffect(() => {
     const getData = async () => {
+
       try {
         const { data } = await axios.get('/api/auth/profile/', {
           headers: {
@@ -37,7 +38,7 @@ const Dashboard = () => {
     <Container className="dashboard-container">
       <div className="account-info-container mt-4">
         <div className="title-box">
-          <p>Account Performance</p>
+          <h1>Account Performance</h1>
         </div>
         <div className="account-info-stats-container">
           <div className="main-stats-container mt-2">

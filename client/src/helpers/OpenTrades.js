@@ -47,6 +47,9 @@ const OpenTrades = () => {
   return (
     <div className="trades-list-container">
       <Scrollbar className="scrollbar"  style={{ height: 250 }}>
+        <div className="open-trades-title">
+          <h6>Open trades</h6>
+        </div>
         <div className="open-trades-title-heading">
           <p>Open date</p>
           <p>Symbol</p>

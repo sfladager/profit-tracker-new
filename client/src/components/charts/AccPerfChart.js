@@ -49,7 +49,7 @@ const AccPerfChart = ({ accountData }) => {
     <>
       {tradeData && chartData ? 
         <>
-          <div className="graph-title"><p>Account Value Evolution</p></div>
+          <div className="graph-title"><h6>Account Value Evolution</h6></div>
           <div className="graph-container">
             <ResponsiveContainer width="100%" height="100%" >
               <LineChart

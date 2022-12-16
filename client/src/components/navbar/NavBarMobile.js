@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import logo from '../../assets/PROFIT-tracker.svg'
 import NavLinks from './NavLinks'
@@ -20,7 +20,13 @@ const NavBarMobile = () => {
       setOpen(false)
     }  
   }
-  window.addEventListener('click', closeDropdown)
+
+  useEffect(() => {
+    if (open) {
+      window.addEventListener('click', closeDropdown)
+    }
+  })
+  
 
   return (
     <div className="navbar-container-mobile">

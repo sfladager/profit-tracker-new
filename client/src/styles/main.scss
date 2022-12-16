@@ -2,7 +2,7 @@
   box-sizing: border-box;
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   margin: 0;
-  p {
+  p, h1, h5, h6 {
     margin: 0;
   }
 }
@@ -153,29 +153,6 @@ a {
   display: none;
 }
 
-
-// ! Navbar
-// .navbar {
-//   background: $primary;
-//   color: #fff;
-//   #nav-dropdown {
-//     color: #fff;
-//   }
-//   .navbar-toggler-icon {
-//     color: #fff;
-//   }
-//   .nav-links-container {
-//     display: flex;
-//     width: 100%;
-//   }
-//   .nav-links {
-//     display: flex;
-//     flex-direction: column;
-//   }
-//   .nav-auth-buttons {
-//     margin-left: 5px;
-//   }
-// }
 // ! Home Page
 .home-page {
   background-image: url(../assets/home2.jpg);
@@ -222,8 +199,11 @@ a {
     color: #fff;
     background-color: $primary;
     align-items: center;
-    padding: 8px 12px;
-    font-size: 105%
+    h1 {
+      padding: 8px 12px;
+      font-size: 105%
+    }
+    
   }
 }
 .main-stats-container {
@@ -241,21 +221,32 @@ a {
   background-color: $primary;
   color: #fff;
   margin-top: 10px;
-  padding: 8px 12px;
-  font-size: 105%
+  h6 {
+    padding: 8px 12px;
+    font-size: 105%
+  }
 }
 .graph-container {
   display: flex;
   height: 250px;
-  // width: 100% !important;
   margin: 5px 5px 10px 0px;
 }
-.open-trades-title-heading {
+.open-trades-title-heading, .open-trades-title {
   background-color: $primary;
   color: #fff;
   font-size: 105%;
-  padding: 8px 2px;
+  
+  h6 {
+    font-size: 105%;
+    padding: 5px 15px;
+  }
+  p {
+    padding: 5px 0;
+  }
 }
+
+
+
 .open-trades-title-heading, .open-trades-row {
   display: grid;
   grid-template-columns: 1.3fr .7fr .6fr 1.4fr;
@@ -520,13 +511,16 @@ a {
 
 }
 // Sessions
+
 .sessions-page-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  .ScrollbarsCustom-Wrapper {
+    border: 1px solid $primary;
+  }
   .session-list-view {
     height: calc(100vh - 80px);
-    border: 1px solid $primary;
     width: 90%;
     padding: 0px;
     margin: 10px auto;
@@ -606,6 +600,11 @@ a {
     padding: 5px 0;
     border-bottom: 1px solid rgba(10, 10, 10, 0.2);
     border-top: 1px solid rgba(10, 10, 10, 0.2);
+  }
+  .trade-info-small {
+    p {
+      padding-left: 15px;
+    }
   }
 
    // editor on blog forms
@@ -703,6 +702,7 @@ a {
     margin: 0 5px;
   }
 }
+
 // Chart on Trade Single page
 #tradingview_38969 {
   height: 500px;
