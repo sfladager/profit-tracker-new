@@ -30,10 +30,9 @@ TIMEFRAME_OPTIONS = (
     ('15', '15 min'),
     ('30', '30 min'),
     ('60', '60 min'),
-    ('1 hour', '1 hour'),
-    ('4 hour', '4 hour'),
-    ('daily', 'Daily'),
-    ('weekly', 'Weekly'),
+    ('240', '4 hour'),
+    ('D', 'Daily'),
+    ('W', 'Weekly'),
   )
 
 class Trade(models.Model):

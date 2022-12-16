@@ -56,13 +56,11 @@ const Trades = () => {
   // takes input from search bar
   const handleSearchInput = (e) => {
     e.preventDefault()
-    // setFilteredTrades({ ...filteredTrades, symbol: e.target.value })
     setSearch(e.target.value)
   }
 
   // Dropdown change function to set filter query
   const handleSetupChange = (e) => {
-    // setFilteredTrades({ ...filteredTrades, setup: e.target.value })
     setSelectedSetup(e.target.value)
   }
 

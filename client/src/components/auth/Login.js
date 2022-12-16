@@ -39,7 +39,7 @@ const Login = () => {
       setToken(data.token)
       navigate('/dashboard')
     } catch (err) {
-      setError(err.message)
+      setErrors(err.message)
     }
   }
 

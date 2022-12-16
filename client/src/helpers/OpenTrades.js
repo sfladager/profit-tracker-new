@@ -36,7 +36,7 @@ const OpenTrades = () => {
         open.push(trade)
       }
     })
-    console.log('OPEN', open)
+    // console.log('OPEN', open)
     setOpenTrades(open)
   }
 

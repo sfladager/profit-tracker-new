@@ -38,7 +38,7 @@ const Register = () => {
       navigate('/dashboard')
     } catch (err) {
       console.log(err.message)
-      setError(err.message)
+      setErrors(err.message)
     }
   }
 

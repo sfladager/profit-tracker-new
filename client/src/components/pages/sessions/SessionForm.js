@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate, Link, useParams } from 'react-router-dom'
 import axios from 'axios'
 import { getToken } from '../../../helpers/auth'
@@ -6,8 +6,6 @@ import TextEditor from '../../editor/TextEditor'
 
 // Bootstrap
 import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 
 // Icons
@@ -21,11 +19,11 @@ const SessionForm = ({ handleSubmit, formFields, setFormFields, errors, setError
 
   // Get values and add to formfields object 
   const handleChange = (e) => {
-    // console.log(`${e.target.name} - ${e.target.value}`)
     setFormFields({ ...formFields, [e.target.name]: e.target.value })
     setErrors({ ...errors, [e.target.name]: '', message: '' })
   }
-
+  const [ error, setError ] = useState(null)
+  
   const deleteSession = async (e) => {
     try {
       await axios.delete(`/api/sessions/${SessionId}`, {
@@ -79,7 +77,7 @@ const SessionForm = ({ handleSubmit, formFields, setFormFields, errors, setError
               formFields={formFields}
               setFormFields={setFormFields}
             />
-            {errors ? errors.detail : ''}
+            {errors ? <p>{errors.session_trades}</p> : ''}
             {formName === 'Edit Session' ?
               <div className="edit-delete-btns">
                 <Button type="submit" className="button-blue btn-50">{formName}</Button>

@@ -49,8 +49,8 @@ const SessionNew = () => {
         // console.log(data)
         setFormFields(data)
       } catch (err) {
-        console.log(err.response.data)
-        setErrors(err.response.data)
+        console.log(err)
+        setErrors(err)
       }
     }
     getData()
@@ -61,7 +61,7 @@ const SessionNew = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const { data } = await axios.put(`/api/sessions/${SessionId}`, formFields, {
+      const { data } = await axios.put(`/api/sessions/${SessionId}/`, formFields, {
         headers: {
           Authorization: `Bearer ${getToken()}`,
         },
@@ -69,8 +69,8 @@ const SessionNew = () => {
       console.log('SUCCESS', data)
       navigate('/sessions/')
     } catch (err) {
-      console.log(err.response.data)
-      setErrors(err.response.data)
+      console.log(err)
+      setErrors(err)
     }
   }
 

@@ -23,7 +23,7 @@ class JWTAuthentication(BaseAuthentication):
       raise PermissionDenied('Invalid Token')
     # 4. Remove Bearer & space from Authorization header, and save token to variable
     token = headers.replace('Bearer ', '')
-    print('TOKEN ->', token)
+    # print('TOKEN ->', token)
 
     try:
       # 5. Use JWT method to verify token is valid and extract payload information

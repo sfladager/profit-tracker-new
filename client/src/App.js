@@ -1,7 +1,8 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
-import Navbar from './components/navbar/NavMenu'
+// import Navbar from './components/navbar/NavMenu'
+import NavBar from './components/navbar/NavBar'
 // page imports
 import Home from './components/pages/Home'
 import NotFound from './components/pages/NotFound'
@@ -17,7 +18,6 @@ import ExecutionNew from './components/pages/trades/ExecutionNew'
 import ExecutionEdit from './components/pages/trades/ExecutionEdit'
 import SessionsAll from './components/pages/sessions/SessionsAll'
 import SessionNew from './components/pages/sessions/SessionNew'
-import SessionSingle from './components/pages/sessions/SessionSingle'
 import SessionEdit from './components/pages/sessions/SessionEdit'
 
 const App = () => {
@@ -25,7 +25,7 @@ const App = () => {
   return (
     <div className="site-wrapper">
       <BrowserRouter>
-        <Navbar />
+        <NavBar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="*" element={<NotFound />} />
@@ -41,7 +41,6 @@ const App = () => {
           <Route path="/trades/:TradeId/execution/:ExecutionId" element={<ExecutionEdit/>} />
           <Route path="/sessions" element={<SessionsAll />} />
           <Route path="/sessions/single/add" element={<SessionNew />} />
-          <Route path="/sessions/:SessionId" element={<SessionSingle />} />
           <Route path="/sessions/:SessionId/edit" element={<SessionEdit />} />
 
 

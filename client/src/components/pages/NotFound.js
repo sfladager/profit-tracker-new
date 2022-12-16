@@ -3,7 +3,7 @@
 const NotFound = () => {
   return (
     <div className="not-found">
-      <p>Wrong route...</p>
+      <p>This page does not exist.</p>
     </div>
   )
 }

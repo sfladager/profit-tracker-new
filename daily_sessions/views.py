@@ -21,11 +21,8 @@ class SessionView(APIView):
   
   # POST new session
   def post(self, request):
-    # print("REQUEST USER ->", request.user)
-    # request.data['owner'] = request.user.id
-    # print("REQUEST DATA ->", request.data)
     try:
-      session_to_add = SessionSerializer(data=request.data)
+      session_to_add = SessionSerializer(data=request.data, partial=True)
       if session_to_add.is_valid():
         session_to_add.save()
         return Response(session_to_add.data, status.HTTP_201_CREATED)  

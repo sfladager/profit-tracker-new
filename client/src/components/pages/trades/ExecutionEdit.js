@@ -8,9 +8,6 @@ import ExecutionForm from './ExecutionForm'
 
 // Bootstrap imports
 import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import Button from 'react-bootstrap/Button'
 
 
 const ExecutionEdit = () => {
@@ -46,7 +43,7 @@ const ExecutionEdit = () => {
             Authorization: `Bearer ${getToken()}`,
           },
         })
-        console.log(data)
+        // console.log(data)
         setFormFields(data)
       } catch (err) {
         console.log(err)
@@ -66,7 +63,7 @@ const ExecutionEdit = () => {
           Authorization: `Bearer ${getToken()}`,
         },
       })
-      console.log('SUCCESS', data)
+      // console.log('SUCCESS', data)
       navigate(`/trades/${TradeId}`)
     } catch (err) {
       console.log(err.response.data)

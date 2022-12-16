@@ -6,8 +6,6 @@ import { getToken } from '../../../helpers/auth'
 
 // Bootstrap imports
 import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 
 // Icons
@@ -99,9 +97,14 @@ const TradeForm = ({ handleSubmit, formFields, setFormFields, errors, setErrors,
             />
             {/* Dropdown selectors class */}
             {formModel && formModel.map((data, i)=> {
+              
               return (
                 <>
-                  <label key={i} htmlFor={data.name}>{data.name}</label>
+                  <label key={i} htmlFor={data.name}>{data.name.includes('_') ? 
+                    data.name.charAt(0).toUpperCase() + data.name.slice(1).replace('_', ' ') 
+                    :  
+                    data.name.charAt(0).toUpperCase() + data.name.slice(1)}
+                  </label>
                   <select 
                     name={data.name} 
                     className="trade-form-input" 

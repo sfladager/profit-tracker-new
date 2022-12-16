@@ -42,7 +42,6 @@ const AccPerfChart = ({ accountData }) => {
         })
       })
     }
-    console.log(value)
     setAccountValue(value)
   }, [accountData.account_value])
 
@@ -52,12 +51,14 @@ const AccPerfChart = ({ accountData }) => {
         <>
           <div className="graph-title"><p>Account Value Evolution</p></div>
           <div className="graph-container">
-            <ResponsiveContainer width="100%" height="100%">
+            <ResponsiveContainer width="100%" height="100%" >
               <LineChart
                 className="graph-container"
                 width={window.innerWidth}
                 height={250}
                 data={accountValue}
+                backgroundColor={'#00ff00'}
+                wrapperStyle={{ backgroundColor: '#00ff00' }}
               >
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="id" />

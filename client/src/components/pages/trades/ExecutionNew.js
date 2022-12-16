@@ -8,9 +8,6 @@ import ExecutionForm from './ExecutionForm'
 
 // Bootstrap imports
 import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import Button from 'react-bootstrap/Button'
 
 const ExecutionNew = () => {
 
@@ -48,7 +45,6 @@ const ExecutionNew = () => {
           Authorization: `Bearer ${getToken()}`,
         },
       })
-      console.log('SUCCESS', data)
       navigate(`/trades/${TradeId}`)
     } catch (err) {
       console.log(err.response.data)

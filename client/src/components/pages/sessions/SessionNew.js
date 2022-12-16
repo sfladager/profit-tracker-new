@@ -40,7 +40,7 @@ const SessionNew = () => {
             Authorization: `Bearer ${getToken()}`,
           },
         })
-        console.log(data)
+        // console.log(data)
         setTrades(data)
       } catch (err) {
         console.log(err)
@@ -59,7 +59,7 @@ const SessionNew = () => {
           Authorization: `Bearer ${getToken()}`,
         },
       })
-      console.log('SUCCESS', data)
+      // console.log('SUCCESS', data)
       navigate('/sessions')
     } catch (err) {
       console.log(err.response.data)
@@ -72,7 +72,7 @@ const SessionNew = () => {
     if (trades) {
       trades.map(trade => {
         if (trade.date_opened === formFields.session_date) {
-          console.log('trade match', trade)
+          // console.log('trade match', trade)
           sessionTrades.push(trade.id)
         }
       }

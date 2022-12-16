@@ -5,6 +5,7 @@ const TickerInfo = ({ trade }) => {
 
   // ! State 
   const [ ticker, setTicker ] = useState()
+  const [ errors, setErrors ] = useState(null)
 
   // ! Execution
   useEffect(() => {
@@ -15,17 +16,16 @@ const TickerInfo = ({ trade }) => {
         setTicker(data.results)
       } catch (err) {
         console.log(err)
-        // setErrors(err.response.data)
+        setErrors(err)
       }
     }
-    getData()
+    if (trade.asset_class === 'stocks') getData()
   }, [])
 
   useEffect(() => {
-    if (ticker) {
-
-      console.log('ticker FULL', ticker)
-      console.log('ticker', ticker[0].name)
+    if (ticker ) {
+      // console.log('ticker FULL', ticker)
+      // console.log('ticker', ticker[0].name)
     }
   }, [ticker])
   
@@ -38,7 +38,7 @@ const TickerInfo = ({ trade }) => {
         </>
         :
         <>
-          <h3>Name Unknown</h3>
+          <h3>{errors}</h3>
         </>
       }
     </>
