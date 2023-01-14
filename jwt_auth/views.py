@@ -48,7 +48,7 @@ class LoginView(APIView):
       raise PermissionDenied('Invalid Username or Password')
 
     if not user_to_login.check_password(password):
-      print('Password is incorrect')
+      print(PermissionDenied('Invalid Username or Password'))
       raise PermissionDenied('Invalid Username or Password')
 
     # Need to build a date 7 days in the future to give expitation time for token

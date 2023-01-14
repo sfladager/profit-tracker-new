@@ -1,6 +1,5 @@
 from .common import UserSerializer
 from trades.serializers.common import TradeSerializer
-from itertools import accumulate
 
 class PopulatedUserSerializer(UserSerializer):
   trades = TradeSerializer(many=True)

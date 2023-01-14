@@ -47,7 +47,7 @@ class Trade(models.Model):
   stoploss = models.FloatField(blank=True, default=None, null=True)
   expected_r = models.FloatField(blank=True, default=None, null=True)
   setup = models.CharField(max_length=100)
-  mistakes = models.CharField(max_length=200, default='Trade still open')
+  mistakes = models.CharField(max_length=200, blank=True, default=None, null=True)
   notes = models.TextField()
   avg_buy_price = models.FloatField(blank=True, default=None, null=True)
   avg_sell_price = models.FloatField(blank=True, default=None, null=True)

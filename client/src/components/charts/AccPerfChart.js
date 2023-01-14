@@ -10,10 +10,12 @@ const AccPerfChart = ({ accountData }) => {
 
   const [errors, setErrors] = useState([])
  
+  // Sets trade data to state
   useEffect(() =>{
     setTradeData(accountData.trades)
   }, [accountData])
 
+  // Loops through tradeData creating an array of objects to be used for the line graph.
   useEffect(() => {
     const chart = []
     if (tradeData) {
@@ -26,12 +28,14 @@ const AccPerfChart = ({ accountData }) => {
         }
       })
     }
+    // Sorts the objects by date
     if (chart) {
       chart.sort((a, b) => a.date > b.date ? 1 : -1)
     }
     setChartData(chart)
   }, [tradeData])
 
+  // Creates a new object to store the cumulative account value based on each trade. Calculations are run on the backend.
   useEffect(() => {
     const value = []
     if (accountData.account_value) {

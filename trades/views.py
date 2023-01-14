@@ -8,8 +8,6 @@ from rest_framework.exceptions import NotFound, ValidationError, PermissionDenie
 from .models import Trade
 from .serializers.common import TradeSerializer
 from .serializers.populated import PopulatedTradeSerializer
-from .forms.form import TradeForm
-from .serializers.form_serializer import TradeFormSerializer
 
 # Authentication
 from rest_framework.permissions import IsAuthenticated
@@ -90,7 +88,6 @@ class TradeFormView(APIView):
   permission_classes = (IsAuthenticated, )
 
   def get(self, _request):
-    
     fields = Trade._meta.fields
     fields_with_choices = [{'name': field.name, 'choices': field.choices} for field in fields if field.choices]
     print(fields_with_choices)

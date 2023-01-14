@@ -22,17 +22,17 @@
   "model": "jwt_auth.user",
   "pk": 2,
   "fields": {
-    "password": "pbkdf2_sha256$390000$7KK5b6CyfIucDyJyzZ059o$/XnWIccddOwtoGbyO4MKXzhACseagXWqZmNS5FltJQ8=",
-    "last_login": "2022-12-09T14:02:13.783Z",
+    "password": "pbkdf2_sha256$390000$d8zkiUmvDQOcl0qsARaN4b$F3N1pooHvQPhPUJ5fCSPyHMjt5yqDoqJUyGd7+JLFEU=",
+    "last_login": "2022-12-15T16:49:54.167Z",
     "is_superuser": true,
-    "username": "black",
+    "username": "stonktrader",
     "is_staff": true,
     "is_active": true,
     "date_joined": "2022-12-07T15:42:30.712Z",
-    "email": "magic@email.com",
-    "first_name": "sh",
-    "last_name": "",
-    "profile_image": "https://res.cloudinary.com/dubrvgdmq/image/upload/v1670691830/SPROUT_ANYWHERE_BLOG/bc9klaeyfkghon15vwdy.png",
+    "email": "stonksgoup@email.com",
+    "first_name": "shawn",
+    "last_name": "F",
+    "profile_image": "https://res.cloudinary.com/dubrvgdmq/image/upload/v1671193983/SPROUT_ANYWHERE_BLOG/m4qqvhwn0hc1f7ihvmcm.jpg",
     "groups": [],
     "user_permissions": []
   }
@@ -51,6 +51,44 @@
     "email": "blackmagic1@yahoo.com",
     "first_name": "shawn",
     "last_name": "f",
+    "profile_image": "https://res.cloudinary.com/dubrvgdmq/image/upload/v1670691830/SPROUT_ANYWHERE_BLOG/bc9klaeyfkghon15vwdy.png",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "jwt_auth.user",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$390000$W2demGtHQTnKjE3fgc5pOk$GFQ1ZANOhKe/OaHraMG9zZFagstzEi0g6Kgy9JXjCus=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "testuser",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2022-12-15T16:20:49.439Z",
+    "email": "testing@email.com",
+    "first_name": null,
+    "last_name": null,
+    "profile_image": "https://res.cloudinary.com/dubrvgdmq/image/upload/v1670691830/SPROUT_ANYWHERE_BLOG/bc9klaeyfkghon15vwdy.png",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "jwt_auth.user",
+  "pk": 5,
+  "fields": {
+    "password": "pbkdf2_sha256$390000$j9UdSIJgZbHPRqJ5cI03YD$RHRlxjQ+iCZsSoS+zbgJkKzlvRkhFIYeHxgzka4wyA0=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "test",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2022-12-16T12:34:40.897Z",
+    "email": "test@email.com",
+    "first_name": null,
+    "last_name": null,
     "profile_image": "https://res.cloudinary.com/dubrvgdmq/image/upload/v1670691830/SPROUT_ANYWHERE_BLOG/bc9klaeyfkghon15vwdy.png",
     "groups": [],
     "user_permissions": []
