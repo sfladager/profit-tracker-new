@@ -86,12 +86,8 @@ class TradeDetailView(APIView):
 # Endpoint: /trades/form
 class TradeFormView(APIView):
   permission_classes = (IsAuthenticated, )
-
   def get(self, _request):
     fields = Trade._meta.fields
     fields_with_choices = [{'name': field.name, 'choices': field.choices} for field in fields if field.choices]
-    print(fields_with_choices)
-      # print(field.name, field.choices)
-    # serialized_form = TradeFormSerializer(form.fields)
-    # print(serialized_form.data)
+    # print(fields_with_choices)
     return Response(fields_with_choices)

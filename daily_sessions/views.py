@@ -46,7 +46,7 @@ class SessionDetailView(APIView):
       print(e)
       return Response(str(e), status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-    # GET session
+  # GET session
   def get(self, request, pk):
     try:
       session = self.get_session(pk)
