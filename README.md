@@ -1,4 +1,4 @@
-# profit-tracker
+# Profit Tracker
 
   Profit Tracker was my 4th and final project in the General Assembly Software Engineer Immersive course. I have been trading equities and cryptocurrencies for several years, and have been wanting to create my own trading journal and tracking app. I took this opportunity to create that web app. We had 8 days to incorporate everything we had learned in the past 3 months to develop a full stack web app. The main tech stack used was React JS, and Django REST framework to serve data from a PostgreSQL database.
   
@@ -46,8 +46,6 @@ Check out the website here → **waiting for access**
 - Figma
 
 # Installation
-
-# Get Started
 - Clone or download the repo
 - In root folder run: ``` npm install ```
 - Run ``` mongod --dbpath ~/data/db ``` if you are using MacOS Catalina. Otherwise run mongod
