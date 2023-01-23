@@ -36,7 +36,7 @@ const ExecutionForm = ({ handleSubmit, formFields, setFormFields, errors, setErr
 
   const deleteExecution = async (e) => {
     try {
-      await axios.delete(`/api/executions/${ExecutionId}`, {
+      await axios.delete(`/api/executions/${ExecutionId}/`, {
         headers: {
           Authorization: `Bearer ${getToken()}`,
         },

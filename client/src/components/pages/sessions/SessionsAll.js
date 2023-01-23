@@ -7,9 +7,6 @@ import parse from 'html-react-parser'
 import { Scrollbar } from 'react-scrollbars-custom'
 
 // Bootstrap
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 
 // Icons
@@ -49,7 +46,7 @@ const SessionsAll = () => {
   const getSession = async (e) => {
     console.log(e.target.id)
     try {
-      const { data } = await axios.get(`api/sessions/${e.target.id}/`, {
+      const { data } = await axios.get(`/api/sessions/${e.target.id}/`, {
         headers: {
           Authorization: `Bearer ${getToken()}`,
         },

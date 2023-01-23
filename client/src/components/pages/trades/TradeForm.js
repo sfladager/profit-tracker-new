@@ -61,7 +61,7 @@ const TradeForm = ({ handleSubmit, formFields, setFormFields, errors, setErrors,
 
   const deleteExecution = async (e) => {
     try {
-      await axios.delete(`/api/trades/${TradeId}`, {
+      await axios.delete(`/api/trades/${TradeId}/`, {
         headers: {
           Authorization: `Bearer ${getToken()}`,
         },

@@ -26,7 +26,7 @@ const SessionForm = ({ handleSubmit, formFields, setFormFields, errors, setError
   
   const deleteSession = async (e) => {
     try {
-      await axios.delete(`/api/sessions/${SessionId}`, {
+      await axios.delete(`/api/sessions/${SessionId}/`, {
         headers: {
           Authorization: `Bearer ${getToken()}`,
         },

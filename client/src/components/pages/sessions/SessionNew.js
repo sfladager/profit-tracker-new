@@ -75,7 +75,7 @@ const SessionNew = () => {
       }
       )
     }
-    console.log(sessionTrades)
+    // console.log(sessionTrades)
     setFormFields({ ...formFields, session_trades: sessionTrades })
   }, [trades, formFields.session_date])
 

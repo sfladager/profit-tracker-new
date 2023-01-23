@@ -41,7 +41,7 @@ const SessionNew = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const { data } = await axios.get(`/api/sessions/${SessionId}`, {
+        const { data } = await axios.get(`/api/sessions/${SessionId}/`, {
           headers: {
             Authorization: `Bearer ${getToken()}`,
           },

@@ -33,5 +33,4 @@ class PopulatedUserSerializer(UserSerializer):
     data['win_ratio'] = '100%' if len(loss) == 0 else round((len(win)/ (len(win) + len(loss))) * 100)
     data['account_value'] = cumulative_sum
 
-
     return data
