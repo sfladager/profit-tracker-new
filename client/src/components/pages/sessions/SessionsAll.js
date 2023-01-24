@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link, useParams, request } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import axios from 'axios'
 import { getToken } from '../../../helpers/auth'
 import parse from 'html-react-parser'

@@ -1,12 +1,9 @@
-import { useState, useEffect, useCallback } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { Scrollbar } from 'react-scrollbars-custom'
 import { getToken } from '../../../helpers/auth'
 
-
-// Bootstrap imports
-import Container from 'react-bootstrap/Container'
 
 // icons
 import { PlusSquare } from 'react-feather'

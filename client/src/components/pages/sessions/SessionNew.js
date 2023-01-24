@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { getToken, getPayload } from '../../../helpers/auth'
 
@@ -7,8 +7,6 @@ import SessionForm from './SessionForm'
 
 // Bootstrap
 import Container from 'react-bootstrap/Container'
-
-
 
 const SessionNew = () => {
 
@@ -56,7 +54,7 @@ const SessionNew = () => {
           Authorization: `Bearer ${getToken()}`,
         },
       })
-      // console.log('SUCCESS', data)
+      console.log('SUCCESS', data)
       navigate('/sessions')
     } catch (err) {
       console.log(err.response.data)

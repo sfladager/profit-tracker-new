@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Link, useParams, useNavigate } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import axios from 'axios'
 
 import { getToken } from '../../../helpers/auth'
@@ -20,7 +20,7 @@ const TradeSingle = () => {
   const [errors, setErrors] = useState(null)
 
   const { TradeId } = useParams()
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
 
   // ! Execution
   useEffect(() => {

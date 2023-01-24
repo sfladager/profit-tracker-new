@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 import { getToken } from '../../../helpers/auth'
@@ -15,10 +15,12 @@ import { ChevronLeft } from 'react-feather'
 
 const TradeForm = ({ handleSubmit, formFields, setFormFields, errors, setErrors, formName }) => {
 
+  // ! Navigation 
+  const { TradeId } = useParams()
+  const navigate = useNavigate()
   // ! State
   const [ tradeModel, setTradeModel ] = useState([])
   const [ formModel, setFormOptions ] = useState([])
-
 
   // ! Executions
 

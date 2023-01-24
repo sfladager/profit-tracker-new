@@ -63,7 +63,7 @@ const ExecutionEdit = () => {
           Authorization: `Bearer ${getToken()}`,
         },
       })
-      // console.log('SUCCESS', data)
+      console.log('SUCCESS', data)
       navigate(`/trades/${TradeId}`)
     } catch (err) {
       console.log(err.response.data)

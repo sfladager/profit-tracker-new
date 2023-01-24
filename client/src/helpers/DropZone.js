@@ -44,6 +44,7 @@ const DropZone = ({ formFields, setFormFields  }) => {
           <img
             className="thumb-img"
             src={formFields.profile_image}
+            alt="user input"
             // Revoke data uri after image is loaded
             onLoad={() => { 
               URL.revokeObjectURL(formFields.profile_image) 

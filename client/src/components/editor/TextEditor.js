@@ -1,7 +1,6 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 import { Editor } from 'react-draft-wysiwyg'
 import { convertToRaw } from 'draft-js'
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
 import draftToHtml from 'draftjs-to-html'
 
 // imports needed to convert html to draft for editor

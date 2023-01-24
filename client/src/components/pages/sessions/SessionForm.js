@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useNavigate, Link, useParams } from 'react-router-dom'
 import axios from 'axios'
 import { getToken } from '../../../helpers/auth'
@@ -34,6 +34,7 @@ const SessionForm = ({ handleSubmit, formFields, setFormFields, errors, setError
       navigate('/sessions/')
     } catch (err) {
       console.log(err)
+      setError(err)
     }
   }
 
