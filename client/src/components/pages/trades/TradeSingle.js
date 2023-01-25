@@ -4,7 +4,7 @@ import axios from 'axios'
 
 import { getToken } from '../../../helpers/auth'
 import { Scrollbar } from 'react-scrollbars-custom'
-import ChartWidget from '../../charts/ChartWidget'
+import TradingViewWidget from '../../charts/ChartWidget'
 import TickerInfo from '../../../helpers/TickerInfo'
 
 // Bootstrap imports
@@ -186,7 +186,7 @@ const TradeSingle = () => {
             {trade ? 
               <>
                 <div className="trade-chart">
-                  <ChartWidget
+                  <TradingViewWidget
                     trade={trade}
                   />
                 </div>

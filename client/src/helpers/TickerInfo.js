@@ -11,7 +11,7 @@ const TickerInfo = ({ trade }) => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const { data } = await axios.get(`https://api.polygon.io/v3/reference/tickers?ticker=${trade.symbol}&active=true&apiKey=mppVPsDvMBxhhGzvflwpDYRJ3RS3Xcch/`)
+        const { data } = await axios.get(`https://api.polygon.io/v3/reference/tickers?ticker=${trade.symbol}&active=true&apiKey=mppVPsDvMBxhhGzvflwpDYRJ3RS3Xcch`)
 
         setTicker(data.results)
       } catch (err) {
