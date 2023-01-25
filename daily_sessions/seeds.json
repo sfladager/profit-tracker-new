@@ -6,8 +6,11 @@
     "session_date": "2022-12-07",
     "session_rating": 4,
     "session_notes": "Took profits too early, and stock hit targets as per plan. Market dumped, stock had strong relative strength.",
-    "session_trades": 3,
-    "owner_of_session": 2
+    "owner_of_session": 6,
+    "session_trades": [
+      1,
+      11
+    ]
   }
 },
 {
@@ -17,8 +20,8 @@
     "session_date": "2022-12-08",
     "session_rating": 3,
     "session_notes": "testing the add session controller",
-    "session_trades": null,
-    "owner_of_session": 2
+    "owner_of_session": 2,
+    "session_trades": []
   }
 },
 {
@@ -28,8 +31,140 @@
     "session_date": "2022-12-04",
     "session_rating": 5,
     "session_notes": "This session was perfect",
-    "session_trades": null,
-    "owner_of_session": 2
+    "owner_of_session": 2,
+    "session_trades": []
+  }
+},
+{
+  "model": "daily_sessions.session",
+  "pk": 9,
+  "fields": {
+    "session_date": "2022-12-12",
+    "session_rating": 4,
+    "session_notes": "<p>Followed trade plan and trades went well.</p>",
+    "owner_of_session": 6,
+    "session_trades": [
+      8,
+      9,
+      12
+    ]
+  }
+},
+{
+  "model": "daily_sessions.session",
+  "pk": 10,
+  "fields": {
+    "session_date": "2022-11-16",
+    "session_rating": 4,
+    "session_notes": "<p>Good sessions</p>",
+    "owner_of_session": 6,
+    "session_trades": [
+      13
+    ]
+  }
+},
+{
+  "model": "daily_sessions.session",
+  "pk": 11,
+  "fields": {
+    "session_date": "2022-12-13",
+    "session_rating": 5,
+    "session_notes": "<p>Easy trading day</p>",
+    "owner_of_session": 6,
+    "session_trades": [
+      14
+    ]
+  }
+},
+{
+  "model": "daily_sessions.session",
+  "pk": 13,
+  "fields": {
+    "session_date": "2022-11-15",
+    "session_rating": 2,
+    "session_notes": "<p>Distracted by the euphoria of tech sector gapping up. Missed the huge daily chart resistance we were gapping into. Everything over extended to the up side. Not surprised this was a major pullback day.</p>",
+    "owner_of_session": 6,
+    "session_trades": [
+      15
+    ]
+  }
+},
+{
+  "model": "daily_sessions.session",
+  "pk": 14,
+  "fields": {
+    "session_date": "2022-12-01",
+    "session_rating": 3,
+    "session_notes": "<p>Decent day, but let FOMO get the best of me. Sentiment was very high, and it let me be lazy and end a low quality trade setup.</p>",
+    "owner_of_session": 6,
+    "session_trades": [
+      1
+    ]
+  }
+},
+{
+  "model": "daily_sessions.session",
+  "pk": 15,
+  "fields": {
+    "session_date": "2022-12-15",
+    "session_rating": 5,
+    "session_notes": "<p>Happy with this day. Not many good opportunties. KBH popped up on my pre-market scanner and showed strong relative strength. My pre-market plan for this trade worked out. Good day because 1 and done and resisted entering any other trades on a difficult day.</p>",
+    "owner_of_session": 6,
+    "session_trades": [
+      17
+    ]
+  }
+},
+{
+  "model": "daily_sessions.session",
+  "pk": 16,
+  "fields": {
+    "session_date": "2022-12-02",
+    "session_rating": 3,
+    "session_notes": "<p>The good: Made money on one trade, and didn't over trade on a tough day.</p>\r\n<p>The bad: Entered a trade on a poor quality setup</p>\r\n<p>The ugly: I made money on a day where I shouldn't have traded.&nbsp;</p>",
+    "owner_of_session": 6,
+    "session_trades": [
+      18
+    ]
+  }
+},
+{
+  "model": "daily_sessions.session",
+  "pk": 17,
+  "fields": {
+    "session_date": "2022-12-16",
+    "session_rating": 5,
+    "session_notes": "<p>great day easy money</p>",
+    "owner_of_session": 6,
+    "session_trades": [
+      19
+    ]
+  }
+},
+{
+  "model": "daily_sessions.session",
+  "pk": 18,
+  "fields": {
+    "session_date": "2022-12-14",
+    "session_rating": 3,
+    "session_notes": "<p>Testing the editor</p>",
+    "owner_of_session": 6,
+    "session_trades": [
+      10
+    ]
+  }
+},
+{
+  "model": "daily_sessions.session",
+  "pk": 19,
+  "fields": {
+    "session_date": "2023-01-23",
+    "session_rating": 3,
+    "session_notes": "<p>easy quick track. market moved with my trade.</p>",
+    "owner_of_session": 6,
+    "session_trades": [
+      21
+    ]
   }
 }
 ]

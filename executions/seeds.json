@@ -7,10 +7,10 @@
     "date": "2022-12-01",
     "time": "20:09:30",
     "quantity": 50,
-    "price": 133.02,
+    "price": 133.0,
     "commissions": 0.0,
     "trade": 1,
-    "owner": 2
+    "owner": 6
   }
 },
 {
@@ -21,10 +21,10 @@
     "date": "2022-12-07",
     "time": "16:13:07",
     "quantity": 50,
-    "price": 135.23,
+    "price": 135.25,
     "commissions": 0.0,
     "trade": 1,
-    "owner": 2
+    "owner": 6
   }
 },
 {
@@ -38,7 +38,7 @@
     "price": 46.25,
     "commissions": 0.0,
     "trade": 3,
-    "owner": 2
+    "owner": 6
   }
 },
 {
@@ -52,7 +52,7 @@
     "price": 46.55,
     "commissions": 0.0,
     "trade": 3,
-    "owner": 2
+    "owner": 6
   }
 },
 {
@@ -66,7 +66,455 @@
     "price": 46.8,
     "commissions": 0.0,
     "trade": 3,
+    "owner": 6
+  }
+},
+{
+  "model": "executions.execution",
+  "pk": 43,
+  "fields": {
+    "action": "buy",
+    "date": "2022-12-12",
+    "time": "08:28:25",
+    "quantity": 100,
+    "price": 72.0,
+    "commissions": 0.0,
+    "trade": 8,
+    "owner": 6
+  }
+},
+{
+  "model": "executions.execution",
+  "pk": 44,
+  "fields": {
+    "action": "sell",
+    "date": "2022-12-12",
+    "time": "08:28:25",
+    "quantity": 100,
+    "price": 69.0,
+    "commissions": 0.0,
+    "trade": 8,
+    "owner": 6
+  }
+},
+{
+  "model": "executions.execution",
+  "pk": 45,
+  "fields": {
+    "action": "buy",
+    "date": "2022-12-12",
+    "time": "07:36:00",
+    "quantity": 100,
+    "price": 108.0,
+    "commissions": 0.0,
+    "trade": 9,
+    "owner": 6
+  }
+},
+{
+  "model": "executions.execution",
+  "pk": 46,
+  "fields": {
+    "action": "sell",
+    "date": "2022-12-14",
+    "time": "09:42:00",
+    "quantity": 100,
+    "price": 124.57,
+    "commissions": 0.0,
+    "trade": 9,
+    "owner": 6
+  }
+},
+{
+  "model": "executions.execution",
+  "pk": 47,
+  "fields": {
+    "action": "buy",
+    "date": "2022-12-14",
+    "time": "08:53:00",
+    "quantity": 100,
+    "price": 63.0,
+    "commissions": 0.0,
+    "trade": 10,
+    "owner": 6
+  }
+},
+{
+  "model": "executions.execution",
+  "pk": 48,
+  "fields": {
+    "action": "buy",
+    "date": "2022-12-14",
+    "time": "10:23:00",
+    "quantity": 100,
+    "price": 63.1,
+    "commissions": 0.0,
+    "trade": 10,
+    "owner": 6
+  }
+},
+{
+  "model": "executions.execution",
+  "pk": 49,
+  "fields": {
+    "action": "buy",
+    "date": "2022-12-14",
+    "time": "10:45:00",
+    "quantity": 100,
+    "price": 63.38,
+    "commissions": 0.0,
+    "trade": 10,
+    "owner": 6
+  }
+},
+{
+  "model": "executions.execution",
+  "pk": 50,
+  "fields": {
+    "action": "buy",
+    "date": "2022-12-07",
+    "time": "07:30:00",
+    "quantity": 500,
+    "price": 63.5,
+    "commissions": 0.0,
+    "trade": 11,
     "owner": 2
+  }
+},
+{
+  "model": "executions.execution",
+  "pk": 51,
+  "fields": {
+    "action": "sell",
+    "date": "2022-12-07",
+    "time": "08:13:00",
+    "quantity": 100,
+    "price": 63.65,
+    "commissions": 0.0,
+    "trade": 11,
+    "owner": 2
+  }
+},
+{
+  "model": "executions.execution",
+  "pk": 52,
+  "fields": {
+    "action": "sell",
+    "date": "2022-12-07",
+    "time": "08:25:00",
+    "quantity": 400,
+    "price": 63.82,
+    "commissions": 0.0,
+    "trade": 11,
+    "owner": 2
+  }
+},
+{
+  "model": "executions.execution",
+  "pk": 53,
+  "fields": {
+    "action": "buy",
+    "date": "2022-12-14",
+    "time": "11:23:00",
+    "quantity": 350,
+    "price": 36.45,
+    "commissions": 0.0,
+    "trade": 12,
+    "owner": 2
+  }
+},
+{
+  "model": "executions.execution",
+  "pk": 54,
+  "fields": {
+    "action": "sell",
+    "date": "2022-12-14",
+    "time": "13:33:00",
+    "quantity": 350,
+    "price": 36.99,
+    "commissions": 0.0,
+    "trade": 12,
+    "owner": 2
+  }
+},
+{
+  "model": "executions.execution",
+  "pk": 55,
+  "fields": {
+    "action": "buy",
+    "date": "2022-11-16",
+    "time": "09:33:00",
+    "quantity": 50,
+    "price": 378.0,
+    "commissions": 0.0,
+    "trade": 13,
+    "owner": 6
+  }
+},
+{
+  "model": "executions.execution",
+  "pk": 56,
+  "fields": {
+    "action": "buy",
+    "date": "2022-11-16",
+    "time": "09:42:00",
+    "quantity": 50,
+    "price": 382.23,
+    "commissions": 0.0,
+    "trade": 13,
+    "owner": 6
+  }
+},
+{
+  "model": "executions.execution",
+  "pk": 57,
+  "fields": {
+    "action": "sell",
+    "date": "2022-11-28",
+    "time": "12:33:00",
+    "quantity": 100,
+    "price": 402.11,
+    "commissions": 0.0,
+    "trade": 13,
+    "owner": 6
+  }
+},
+{
+  "model": "executions.execution",
+  "pk": 58,
+  "fields": {
+    "action": "buy",
+    "date": "2022-12-13",
+    "time": "07:11:00",
+    "quantity": 75,
+    "price": 189.76,
+    "commissions": 0.0,
+    "trade": 14,
+    "owner": 6
+  }
+},
+{
+  "model": "executions.execution",
+  "pk": 59,
+  "fields": {
+    "action": "sell",
+    "date": "2022-12-13",
+    "time": "07:45:00",
+    "quantity": 75,
+    "price": 200.03,
+    "commissions": 0.0,
+    "trade": 14,
+    "owner": 6
+  }
+},
+{
+  "model": "executions.execution",
+  "pk": 60,
+  "fields": {
+    "action": "buy",
+    "date": "2022-11-15",
+    "time": "09:12:00",
+    "quantity": 100,
+    "price": 76.1,
+    "commissions": 0.0,
+    "trade": 15,
+    "owner": 6
+  }
+},
+{
+  "model": "executions.execution",
+  "pk": 61,
+  "fields": {
+    "action": "sell",
+    "date": "2022-11-15",
+    "time": "11:23:00",
+    "quantity": 100,
+    "price": 75.0,
+    "commissions": 0.0,
+    "trade": 15,
+    "owner": 6
+  }
+},
+{
+  "model": "executions.execution",
+  "pk": 62,
+  "fields": {
+    "action": "buy",
+    "date": "2020-04-04",
+    "time": "14:28:00",
+    "quantity": 2,
+    "price": 6437.0,
+    "commissions": 0.0,
+    "trade": 16,
+    "owner": 6
+  }
+},
+{
+  "model": "executions.execution",
+  "pk": 63,
+  "fields": {
+    "action": "buy",
+    "date": "2022-12-15",
+    "time": "07:12:00",
+    "quantity": 350,
+    "price": 31.73,
+    "commissions": 0.0,
+    "trade": 17,
+    "owner": 6
+  }
+},
+{
+  "model": "executions.execution",
+  "pk": 64,
+  "fields": {
+    "action": "sell",
+    "date": "2022-12-15",
+    "time": "07:58:00",
+    "quantity": 200,
+    "price": 32.03,
+    "commissions": 0.0,
+    "trade": 17,
+    "owner": 6
+  }
+},
+{
+  "model": "executions.execution",
+  "pk": 65,
+  "fields": {
+    "action": "sell",
+    "date": "2022-12-15",
+    "time": "08:12:00",
+    "quantity": 150,
+    "price": 32.33,
+    "commissions": 0.0,
+    "trade": 17,
+    "owner": 6
+  }
+},
+{
+  "model": "executions.execution",
+  "pk": 66,
+  "fields": {
+    "action": "buy",
+    "date": "2022-12-02",
+    "time": "13:33:00",
+    "quantity": 150,
+    "price": 133.64,
+    "commissions": 0.0,
+    "trade": 18,
+    "owner": 6
+  }
+},
+{
+  "model": "executions.execution",
+  "pk": 67,
+  "fields": {
+    "action": "sell",
+    "date": "2022-12-02",
+    "time": "14:23:00",
+    "quantity": 150,
+    "price": 133.89,
+    "commissions": 0.0,
+    "trade": 18,
+    "owner": 6
+  }
+},
+{
+  "model": "executions.execution",
+  "pk": 68,
+  "fields": {
+    "action": "buy",
+    "date": "2022-12-16",
+    "time": "12:29:00",
+    "quantity": 100,
+    "price": 130.0,
+    "commissions": 0.0,
+    "trade": 19,
+    "owner": 6
+  }
+},
+{
+  "model": "executions.execution",
+  "pk": 69,
+  "fields": {
+    "action": "sell",
+    "date": "2022-12-16",
+    "time": "12:30:00",
+    "quantity": 100,
+    "price": 135.0,
+    "commissions": 0.0,
+    "trade": 19,
+    "owner": 6
+  }
+},
+{
+  "model": "executions.execution",
+  "pk": 70,
+  "fields": {
+    "action": "buy",
+    "date": "2022-12-20",
+    "time": "07:15:00",
+    "quantity": 150,
+    "price": 92.0,
+    "commissions": 0.0,
+    "trade": 20,
+    "owner": 2
+  }
+},
+{
+  "model": "executions.execution",
+  "pk": 71,
+  "fields": {
+    "action": "sell",
+    "date": "2022-12-21",
+    "time": "08:30:00",
+    "quantity": 75,
+    "price": 94.54,
+    "commissions": 0.0,
+    "trade": 20,
+    "owner": 2
+  }
+},
+{
+  "model": "executions.execution",
+  "pk": 72,
+  "fields": {
+    "action": "sell",
+    "date": "2022-12-21",
+    "time": "09:05:00",
+    "quantity": 75,
+    "price": 96.33,
+    "commissions": 0.0,
+    "trade": 20,
+    "owner": 2
+  }
+},
+{
+  "model": "executions.execution",
+  "pk": 73,
+  "fields": {
+    "action": "buy",
+    "date": "2023-01-23",
+    "time": "08:23:00",
+    "quantity": 50,
+    "price": 285.0,
+    "commissions": 0.0,
+    "trade": 21,
+    "owner": 6
+  }
+},
+{
+  "model": "executions.execution",
+  "pk": 74,
+  "fields": {
+    "action": "sell",
+    "date": "2023-01-23",
+    "time": "08:28:00",
+    "quantity": 50,
+    "price": 288.0,
+    "commissions": 0.0,
+    "trade": 21,
+    "owner": 6
   }
 }
 ]
