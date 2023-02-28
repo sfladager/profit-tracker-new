@@ -8,7 +8,7 @@
 ![walkthrough-2](https://media.giphy.com/media/0YmcAXXjKf1f2u8Jmn/giphy.gif)
   
 # Link
-Check out the website here → ![https://profit-tracker.herokuapp.com/]
+Check out the website here → [Demo](https://profit-tracker.herokuapp.com/)
 
 # Brief
 - Build a full-stack application by making your own backend and your own front-end.
