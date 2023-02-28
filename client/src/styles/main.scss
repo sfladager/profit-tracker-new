@@ -168,6 +168,17 @@ a {
   .hero-title, .hero-btn {
     padding-top: 30px;
   }
+  .login-instructions {
+    margin-top: 40px;
+    padding: 20px;
+    max-width: 350px;
+    background-color: darken(#fff, 90%);
+    border-radius: 10px;
+    h2 {
+      margin: 20px 0;
+      font-size: 1.5rem;
+    }
+  }
 
 }
 
